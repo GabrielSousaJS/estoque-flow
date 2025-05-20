@@ -6,5 +6,5 @@ public interface IMovimentacaoRepository
 {
     Task<Movimentacao> Adicionar(Movimentacao movimentacao);
     Task<IEnumerable<Movimentacao>> ObterTodos();
-    Task<Movimentacao> ObterPorId(int id);
+    Task<Movimentacao?> ObterPorId(int id);
 }
