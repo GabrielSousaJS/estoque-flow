@@ -8,5 +8,4 @@ public interface ICategoriaRepository
     Task Atualizar(Categoria categoria);
     Task<IEnumerable<Categoria>> ObterTodos();
     Task<Categoria> ObterPorId(int id);
-    Task Remover(int id);
 }

@@ -21,7 +21,6 @@ public class Produto
         string descricao,
         Decimal precoCompra,
         Decimal precoVenda,
-        int quantidade,
         int estoqueMinimo,
         int categoriaId,
         int fornecedorId)
@@ -30,7 +29,6 @@ public class Produto
         Descricao = descricao;
         PrecoCompra = precoCompra;
         PrecoVenda = precoVenda;
-        Quantidade = quantidade;
         EstoqueMinimo = estoqueMinimo;
         CategoriaId = categoriaId;
         FornecedorId = fornecedorId;

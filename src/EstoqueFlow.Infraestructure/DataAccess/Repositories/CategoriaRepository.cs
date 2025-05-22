@@ -75,16 +75,4 @@ public class CategoriaRepository : ICategoriaRepository
 
         return await connection.QueryAsync<Categoria>(sql);
     }
-
-    public async Task Remover(int id)
-    {
-        using var connection = DbConnectionFactory.GetConnection();
-
-        string sql = @"
-            DELETE FROM categorias
-            WHERE id = @Id
-        ";
-
-        await connection.ExecuteAsync(sql, new { Id = id });
-    }
 }
