@@ -1,6 +1,5 @@
 ﻿using EstoqueFlow.Application.ViewModel.Usuarios;
 using EstoqueFlow.Domain.Entities;
-using System.Reflection.Metadata.Ecma335;
 
 namespace EstoqueFlow.Application.Mappings;
 
@@ -12,17 +11,6 @@ public static class UsuarioMapping
         {
             Nome = from.Nome,
             Email = from.Email,
-            Senha = from.Senha,
-        };
-    }
-
-    public static Usuario ToAtualizarEntidade(this AtualizarUsuarioRequest from)
-    {
-        return new Usuario
-        {
-            Nome = from.Nome,
-            Email = from.Email,
-            Senha = from.Senha,
         };
     }
 

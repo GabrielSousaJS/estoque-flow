@@ -10,8 +10,10 @@ public class LoginUseCase(IUsuarioRepository usuarioRepository, ICriptografarSen
 {
     public async Task<UsuarioResponse> Executar(LoginRequest request)
     {
-        var usuario = await usuarioRepository.ObterUsuarioPorEmail(request.Email)
-            ?? throw new Exception("E-mail ou senha inválidos.");
+        var usuario = await usuarioRepository.ObterUsuarioPorEmail(request.Email);
+
+        if (usuario is null)
+            throw new Exception("E-mail ou senha inválidos.");
 
         var senhaValida = criptografarSenha.VerificarSenha(request.Senha, usuario.Senha);
 

@@ -26,7 +26,7 @@ namespace EstoqueFlow.Application;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddApplication(IServiceCollection services)
+    public static IServiceCollection AddApplication(this IServiceCollection services)
     {
         AddUseCases(services);
         AddServices(services);
@@ -40,7 +40,7 @@ public static class DependencyInjection
         services.AddScoped<IAtualizarCategoriaUseCase, AtualizarCategoriaUseCase>();
         services.AddScoped<IObterCategoriaPorIdUseCase, ObterCategoriaPorIdUseCase>();
         services.AddScoped<IObterTodosCategoriasUseCase, ObterTodosCategoriasUseCase>();
-        services.AddScoped<IRegistrarCategoriaUseCase, IRegistrarCategoriaUseCase>();
+        services.AddScoped<IRegistrarCategoriaUseCase, RegistrarCategoriaUseCase>();
 
         // Fornecedores
         services.AddScoped<IAtualizarFornecedorRepository, AtualizarFornecedorUseCase>();

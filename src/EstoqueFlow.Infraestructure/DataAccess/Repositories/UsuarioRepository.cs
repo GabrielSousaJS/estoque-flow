@@ -144,6 +144,6 @@ public class UsuarioRepository : IUsuarioRepository
 	            AND ativo = TRUE
         ";
 
-        return await connection.QueryFirstOrDefault(sql, new { email });
+        return await connection.QueryFirstOrDefaultAsync<Usuario>(sql, new { email });
     }
 }

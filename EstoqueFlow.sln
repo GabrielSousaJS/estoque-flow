@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{346A42E3-98E1-4534-B9D9-886CDE9B2955}"
 EndProject
@@ -12,6 +12,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstoqueFlow.Domain", "src\EstoqueFlow.Domain\EstoqueFlow.Domain.csproj", "{D9324EF0-3D1C-4ACB-879D-2F05451F0705}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstoqueFlow.UI", "src\EstoqueFlow.UI\EstoqueFlow.UI.csproj", "{A90B2B0B-5732-43EA-860B-3B37F0112790}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{52DB095C-FE38-401E-817F-F89E3C58E353}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Desktop\logo.ico = ..\..\..\Desktop\logo.ico
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,5 +49,6 @@ Global
 		{874A563A-B239-4575-940F-476669CEFBC8} = {346A42E3-98E1-4534-B9D9-886CDE9B2955}
 		{D9324EF0-3D1C-4ACB-879D-2F05451F0705} = {346A42E3-98E1-4534-B9D9-886CDE9B2955}
 		{A90B2B0B-5732-43EA-860B-3B37F0112790} = {346A42E3-98E1-4534-B9D9-886CDE9B2955}
+		{52DB095C-FE38-401E-817F-F89E3C58E353} = {346A42E3-98E1-4534-B9D9-886CDE9B2955}
 	EndGlobalSection
 EndGlobal

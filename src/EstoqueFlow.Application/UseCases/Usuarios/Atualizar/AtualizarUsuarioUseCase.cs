@@ -10,7 +10,6 @@ public class AtualizarUsuarioUseCase(IUsuarioRepository usuarioRepository, ICrip
     public async Task Executar(int id, AtualizarUsuarioRequest request)
     {
         var usuario = await usuarioRepository.ObterPorId(id);
-
         var senhaCriptografada = criptografarSenha.Criptografar(request.Senha);
 
         usuario.AtualizarDados(request.Nome, request.Email, senhaCriptografada);
