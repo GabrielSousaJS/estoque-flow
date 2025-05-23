@@ -16,13 +16,15 @@ public static class UsuarioMapping
 
     public static UsuarioResponse ToDto(this Usuario from)
     {
+        var saoPauloTimeZone = TimeZoneInfo.FindSystemTimeZoneById("America/Sao_Paulo");
+
         return new UsuarioResponse
         {
             Id = from.Id,
             Nome = from.Nome,
             Email = from.Email,
             Ativo = from.Ativo,
-            DataCadastro = from.DataCadastro,
+            DataCadastro = TimeZoneInfo.ConvertTimeFromUtc(from.DataCadastro, saoPauloTimeZone),
         };
     }
 }

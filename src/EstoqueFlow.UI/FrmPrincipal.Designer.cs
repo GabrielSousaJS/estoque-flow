@@ -48,6 +48,9 @@ partial class FrmPrincipal
         BtnDesativarConta = new Button();
         DgvUsuarios = new DataGridView();
         TbCadastrarFornecedor = new TabPage();
+        TbCadastrarCategoria = new TabPage();
+        TbCadastrarProduto = new TabPage();
+        TbCadastrarMovimentacao = new TabPage();
         TabPrincipal.SuspendLayout();
         TbFornecedores.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)DgvFornecedores).BeginInit();
@@ -79,6 +82,9 @@ partial class FrmPrincipal
         TabPrincipal.Controls.Add(TbMovimentacoes);
         TabPrincipal.Controls.Add(TbUsuarios);
         TabPrincipal.Controls.Add(TbCadastrarFornecedor);
+        TabPrincipal.Controls.Add(TbCadastrarCategoria);
+        TabPrincipal.Controls.Add(TbCadastrarProduto);
+        TabPrincipal.Controls.Add(TbCadastrarMovimentacao);
         TabPrincipal.Location = new Point(3, 41);
         TabPrincipal.Name = "TabPrincipal";
         TabPrincipal.SelectedIndex = 0;
@@ -147,6 +153,7 @@ partial class FrmPrincipal
         BtnAdicionarCategoria.TabIndex = 2;
         BtnAdicionarCategoria.Text = "Adicionar categoria";
         BtnAdicionarCategoria.UseVisualStyleBackColor = true;
+        BtnAdicionarCategoria.Click += BtnAdicionarCategoria_Click;
         // 
         // DgvCategorias
         // 
@@ -187,6 +194,7 @@ partial class FrmPrincipal
         BtnAdicionarProduto.TabIndex = 3;
         BtnAdicionarProduto.Text = "Adicionar produto";
         BtnAdicionarProduto.UseVisualStyleBackColor = true;
+        BtnAdicionarProduto.Click += BtnAdicionarProduto_Click;
         // 
         // DgvProdutos
         // 
@@ -227,6 +235,7 @@ partial class FrmPrincipal
         BtnAdicionarMovimentacao.TabIndex = 4;
         BtnAdicionarMovimentacao.Text = "Adicionar movimentação";
         BtnAdicionarMovimentacao.UseVisualStyleBackColor = true;
+        BtnAdicionarMovimentacao.Click += BtnAdicionarMovimentacao_Click;
         // 
         // DgvMovimentacoes
         // 
@@ -307,6 +316,36 @@ partial class FrmPrincipal
         TbCadastrarFornecedor.Text = "Cadastrar Fornecedor";
         TbCadastrarFornecedor.UseVisualStyleBackColor = true;
         // 
+        // TbCadastrarCategoria
+        // 
+        TbCadastrarCategoria.Location = new Point(4, 29);
+        TbCadastrarCategoria.Name = "TbCadastrarCategoria";
+        TbCadastrarCategoria.Padding = new Padding(3);
+        TbCadastrarCategoria.Size = new Size(985, 506);
+        TbCadastrarCategoria.TabIndex = 6;
+        TbCadastrarCategoria.Text = "Cadastrar Categoria";
+        TbCadastrarCategoria.UseVisualStyleBackColor = true;
+        // 
+        // TbCadastrarProduto
+        // 
+        TbCadastrarProduto.Location = new Point(4, 29);
+        TbCadastrarProduto.Name = "TbCadastrarProduto";
+        TbCadastrarProduto.Padding = new Padding(3);
+        TbCadastrarProduto.Size = new Size(985, 506);
+        TbCadastrarProduto.TabIndex = 7;
+        TbCadastrarProduto.Text = "Cadastrar Produto";
+        TbCadastrarProduto.UseVisualStyleBackColor = true;
+        // 
+        // TbCadastrarMovimentacao
+        // 
+        TbCadastrarMovimentacao.Location = new Point(4, 29);
+        TbCadastrarMovimentacao.Name = "TbCadastrarMovimentacao";
+        TbCadastrarMovimentacao.Padding = new Padding(3);
+        TbCadastrarMovimentacao.Size = new Size(985, 506);
+        TbCadastrarMovimentacao.TabIndex = 8;
+        TbCadastrarMovimentacao.Text = "Cadastrar Movimentação";
+        TbCadastrarMovimentacao.UseVisualStyleBackColor = true;
+        // 
         // FrmPrincipal
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
@@ -355,4 +394,7 @@ partial class FrmPrincipal
     private DataGridView DgvUsuarios;
     private Button BtnAtualizarDados;
     private TabPage TbCadastrarFornecedor;
+    private TabPage TbCadastrarCategoria;
+    private TabPage TbCadastrarProduto;
+    private TabPage TbCadastrarMovimentacao;
 }

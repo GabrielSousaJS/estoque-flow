@@ -53,6 +53,9 @@ public partial class FrmPrincipal : Form
     private void GuiasInicias()
     {
         TabPrincipal.TabPages.Remove(TbCadastrarFornecedor);
+        TabPrincipal.TabPages.Remove(TbCadastrarCategoria);
+        TabPrincipal.TabPages.Remove(TbCadastrarProduto);
+        TabPrincipal.TabPages.Remove(TbCadastrarMovimentacao);
     }
 
     #region CARREGAMENTO DE DADOS DO GRIDVIEW
@@ -110,12 +113,24 @@ public partial class FrmPrincipal : Form
     #endregion
 
     #region CATEGORIA
+    private void BtnAdicionarCategoria_Click(object sender, EventArgs e)
+    {
+        LayoutManager.MostraApenasUmaGuia(TabPrincipal, TbCadastrarCategoria);
+    }
     #endregion
 
     #region PRODUTO
+    private void BtnAdicionarProduto_Click(object sender, EventArgs e)
+    {
+        LayoutManager.MostraApenasUmaGuia(TabPrincipal, TbCadastrarProduto);
+    }
     #endregion
 
     #region MOVIMENTAÇÃO
+    private void BtnAdicionarMovimentacao_Click(object sender, EventArgs e)
+    {
+        LayoutManager.MostraApenasUmaGuia(TabPrincipal, TbCadastrarMovimentacao);
+    }
     #endregion
 
     #region USUÁRIO
