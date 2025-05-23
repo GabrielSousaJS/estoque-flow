@@ -124,8 +124,6 @@ public class MovimentacaoRepository : IMovimentacaoRepository
 	            m.produto_id = p.id
             INNER JOIN usuarios u ON
 	            m.usuario_id = u.id
-            WHERE
-	            m.id = :Id
        ";
 
         return await connection.QueryAsync<Movimentacao, Produto, Usuario, Movimentacao>(
@@ -135,7 +133,8 @@ public class MovimentacaoRepository : IMovimentacaoRepository
                 movimentacao.Produto = produto;
                 movimentacao.Usuario = usuario;
                 return movimentacao;
-            }
+            },
+            splitOn: "Id,Id"
         );
     }
 }

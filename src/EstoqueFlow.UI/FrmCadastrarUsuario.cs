@@ -40,7 +40,7 @@ public partial class FrmCadastrarUsuario : Form
     {
         if (e.KeyCode == Keys.Enter)
         {
-            EfeitosVisuais.RealizarClickVisual(BtnCadastrar);
+            LayoutManager.RealizarClickVisual(BtnCadastrar);
         }
     }
 

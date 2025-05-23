@@ -31,7 +31,7 @@ public partial class FrmLogin : Form
     {
         if (e.KeyCode == Keys.Enter)
         {
-            EfeitosVisuais.RealizarClickVisual(BtnEntrar);
+            LayoutManager.RealizarClickVisual(BtnEntrar);
         }
     }
 

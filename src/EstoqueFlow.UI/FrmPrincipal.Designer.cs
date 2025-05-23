@@ -47,6 +47,7 @@ partial class FrmPrincipal
         BtnAtualizarDados = new Button();
         BtnDesativarConta = new Button();
         DgvUsuarios = new DataGridView();
+        TbCadastrarFornecedor = new TabPage();
         TabPrincipal.SuspendLayout();
         TbFornecedores.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)DgvFornecedores).BeginInit();
@@ -77,6 +78,7 @@ partial class FrmPrincipal
         TabPrincipal.Controls.Add(TbProdutos);
         TabPrincipal.Controls.Add(TbMovimentacoes);
         TabPrincipal.Controls.Add(TbUsuarios);
+        TabPrincipal.Controls.Add(TbCadastrarFornecedor);
         TabPrincipal.Location = new Point(3, 41);
         TabPrincipal.Name = "TabPrincipal";
         TabPrincipal.SelectedIndex = 0;
@@ -104,6 +106,7 @@ partial class FrmPrincipal
         BtnAdicionarFornecedor.TabIndex = 1;
         BtnAdicionarFornecedor.Text = "Adicionar fornecedor";
         BtnAdicionarFornecedor.UseVisualStyleBackColor = true;
+        BtnAdicionarFornecedor.Click += BtnAdicionarFornecedor_Click;
         // 
         // DgvFornecedores
         // 
@@ -294,6 +297,16 @@ partial class FrmPrincipal
         DgvUsuarios.Size = new Size(973, 424);
         DgvUsuarios.TabIndex = 4;
         // 
+        // TbCadastrarFornecedor
+        // 
+        TbCadastrarFornecedor.Location = new Point(4, 29);
+        TbCadastrarFornecedor.Name = "TbCadastrarFornecedor";
+        TbCadastrarFornecedor.Padding = new Padding(3);
+        TbCadastrarFornecedor.Size = new Size(985, 506);
+        TbCadastrarFornecedor.TabIndex = 5;
+        TbCadastrarFornecedor.Text = "Cadastrar Fornecedor";
+        TbCadastrarFornecedor.UseVisualStyleBackColor = true;
+        // 
         // FrmPrincipal
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
@@ -341,4 +354,5 @@ partial class FrmPrincipal
     private Button BtnDesativarConta;
     private DataGridView DgvUsuarios;
     private Button BtnAtualizarDados;
+    private TabPage TbCadastrarFornecedor;
 }
