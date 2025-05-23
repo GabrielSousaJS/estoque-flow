@@ -10,6 +10,6 @@ public class ObterTodosProdutosUseCase(IProdutoRepository produtoRepository) : I
     {
         var produtos = await produtoRepository.ObterTodos();
 
-        return produtos.Select(p => p.ToDto());
+        return produtos.Select(p => p.ToDto()).ToList();
     }
 }

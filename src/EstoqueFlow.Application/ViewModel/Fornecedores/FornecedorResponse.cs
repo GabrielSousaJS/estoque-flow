@@ -4,7 +4,7 @@ namespace EstoqueFlow.Application.ViewModel.Fornecedores;
 
 public class FornecedorResponse
 {
-    [DisplayName("Id")]
+    [DisplayName("ID")]
     public int Id { get; set; }
     [DisplayName("Razão Social")]
     public string RazaoSocial { get; set; } = string.Empty;

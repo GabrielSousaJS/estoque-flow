@@ -10,6 +10,6 @@ public class ObterTodosMovimentacoesUseCase(IMovimentacaoRepository movimentacao
     {
         var movimentacoes = await movimentacaoRepository.ObterTodos();
 
-        return movimentacoes.Select(m => m.ToDto());
+        return movimentacoes.Select(m => m.ToDto()).ToList();
     }
 }

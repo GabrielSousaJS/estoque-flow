@@ -10,6 +10,6 @@ public class ObterTodosFornecedoresUseCase(IFornecedorRepository fornecedorRepos
     {
         var fornecedores = await fornecedorRepository.ObterTodos();
 
-        return fornecedores.Select(f => f.ToDto());
+        return fornecedores.Select(f => f.ToDto()).ToList();
     }
 }

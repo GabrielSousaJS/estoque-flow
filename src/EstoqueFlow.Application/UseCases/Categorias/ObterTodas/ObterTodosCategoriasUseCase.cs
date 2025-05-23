@@ -10,6 +10,6 @@ public class ObterTodosCategoriasUseCase(ICategoriaRepository categoriaRepositor
     {
         var categorias = await categoriaRepository.ObterTodos();
 
-        return categorias.Select(c => c.ToDto());
+        return categorias.Select(c => c.ToDto()).ToList();
     }
 }

@@ -10,6 +10,6 @@ public class ObterTodosUsuariosUseCase(IUsuarioRepository usuarioRepository) : I
     {
         var usuarios = await usuarioRepository.ObterTodos();
 
-        return usuarios.Select(u => u.ToDto());
+        return usuarios.Select(u => u.ToDto()).ToList();
     }
 }

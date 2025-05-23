@@ -4,7 +4,7 @@ namespace EstoqueFlow.Application.ViewModel.Produtos;
 
 public class ProdutoResponse
 {
-    [DisplayName("Id")]
+    [DisplayName("ID")]
     public int Id { get; set; }
     [DisplayName("Nome")]
     public string Nome { get; set; } = string.Empty;

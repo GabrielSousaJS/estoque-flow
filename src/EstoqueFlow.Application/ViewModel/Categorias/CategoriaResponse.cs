@@ -4,7 +4,7 @@ namespace EstoqueFlow.Application.ViewModel.Categorias;
 
 public class CategoriaResponse
 {
-    [DisplayName("Id")]
+    [DisplayName("ID")]
     public int Id { get; set; }
     [DisplayName("Nome")]
     public string Nome { get; set; } = string.Empty;
