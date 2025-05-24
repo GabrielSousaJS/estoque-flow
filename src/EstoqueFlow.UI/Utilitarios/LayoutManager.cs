@@ -27,8 +27,24 @@ public static class LayoutManager
         int ultimaColunaIndex = dgvConfigurar.Columns.Count - 1;
         if (ultimaColunaIndex >= 0)
         {
-            dgvConfigurar.Columns[ultimaColunaIndex].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            if (dgvConfigurar.Columns.Count > 5)
+            {
+                for (int i = 0; i < ultimaColunaIndex; i++)
+                {
+                    dgvConfigurar.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
+
+                dgvConfigurar.Columns[ultimaColunaIndex].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+            else
+            {
+                dgvConfigurar.Columns[ultimaColunaIndex].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+
+            dgvConfigurar.Columns[ultimaColunaIndex].MinimumWidth = 100;
         }
+
+        dgvConfigurar.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders);
     }
 
     public static void MostraApenasUmaGuia(TabControl tabControl, TabPage tabPage)
@@ -111,5 +127,24 @@ public static class LayoutManager
         comboBox.DataSource = dados.ToList();
         comboBox.DisplayMember = displayName;
         comboBox.ValueMember = valueName;
+    }
+
+    public static void FormatarTextBoxNumeroDecimal(this TextBox textBox, object sender, EventArgs e, ref string valorAnteior)
+    {
+        string valor = textBox.Text.Replace("R$ ", "").Replace(",", "").Replace(".", "").Trim();
+
+        if (valor.Length > 10)
+        {
+            textBox.Text = valorAnteior;
+            textBox.SelectionStart = textBox.Text.Length;
+            return;
+        }
+
+        if (decimal.TryParse(valor, out decimal value))
+        {
+            textBox.Text = string.Format("R$ {0:N2}", value / 100);
+            textBox.SelectionStart = textBox.Text.Length;
+            valorAnteior = textBox.Text;
+        }
     }
 }

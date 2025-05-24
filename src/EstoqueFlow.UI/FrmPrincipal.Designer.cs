@@ -69,7 +69,6 @@ partial class FrmPrincipal
         label7 = new Label();
         TbCadastrarProduto = new TabPage();
         BtnCancelarCadastroProduto = new Button();
-        LblErroCadastrarProduto = new Label();
         NudEstoqueMinimo = new NumericUpDown();
         BtnCadastrarProduto = new Button();
         CbFornecedor = new ComboBox();
@@ -570,7 +569,6 @@ partial class FrmPrincipal
         // TbCadastrarProduto
         // 
         TbCadastrarProduto.Controls.Add(BtnCancelarCadastroProduto);
-        TbCadastrarProduto.Controls.Add(LblErroCadastrarProduto);
         TbCadastrarProduto.Controls.Add(NudEstoqueMinimo);
         TbCadastrarProduto.Controls.Add(BtnCadastrarProduto);
         TbCadastrarProduto.Controls.Add(CbFornecedor);
@@ -605,19 +603,6 @@ partial class FrmPrincipal
         BtnCancelarCadastroProduto.UseVisualStyleBackColor = true;
         BtnCancelarCadastroProduto.Click += BtnCancelarCadastroProduto_Click;
         // 
-        // LblErroCadastrarProduto
-        // 
-        LblErroCadastrarProduto.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        LblErroCadastrarProduto.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        LblErroCadastrarProduto.ForeColor = Color.Red;
-        LblErroCadastrarProduto.Location = new Point(19, 339);
-        LblErroCadastrarProduto.Name = "LblErroCadastrarProduto";
-        LblErroCadastrarProduto.Size = new Size(271, 20);
-        LblErroCadastrarProduto.TabIndex = 16;
-        LblErroCadastrarProduto.Text = "Verifique os dados e tente novamente.";
-        LblErroCadastrarProduto.TextAlign = ContentAlignment.MiddleCenter;
-        LblErroCadastrarProduto.Visible = false;
-        // 
         // NudEstoqueMinimo
         // 
         NudEstoqueMinimo.Location = new Point(19, 204);
@@ -638,6 +623,7 @@ partial class FrmPrincipal
         BtnCadastrarProduto.TabIndex = 14;
         BtnCadastrarProduto.Text = "Cadastrar";
         BtnCadastrarProduto.UseVisualStyleBackColor = true;
+        BtnCadastrarProduto.Click += BtnCadastrarProduto_Click;
         // 
         // CbFornecedor
         // 
@@ -661,6 +647,9 @@ partial class FrmPrincipal
         TxtValorVenda.Name = "TxtValorVenda";
         TxtValorVenda.Size = new Size(271, 27);
         TxtValorVenda.TabIndex = 10;
+        TxtValorVenda.TextAlign = HorizontalAlignment.Right;
+        TxtValorVenda.TextChanged += TxtValorVenda_TextChanged;
+        TxtValorVenda.KeyPress += TxtValorVenda_KeyPress;
         // 
         // TxtValorCompra
         // 
@@ -668,6 +657,9 @@ partial class FrmPrincipal
         TxtValorCompra.Name = "TxtValorCompra";
         TxtValorCompra.Size = new Size(271, 27);
         TxtValorCompra.TabIndex = 9;
+        TxtValorCompra.TextAlign = HorizontalAlignment.Right;
+        TxtValorCompra.TextChanged += TxtValorCompra_TextChanged;
+        TxtValorCompra.KeyPress += TxtValorCompra_KeyPress;
         // 
         // TxtDescricaoProduto
         // 
@@ -956,7 +948,6 @@ partial class FrmPrincipal
     private TextBox TxtObservacaoMovimentacao;
     private Label label18;
     private Button BtnCadastrarMovimentacao;
-    private Label LblErroCadastrarProduto;
     private Label LblErroCadastrarMovimentacao;
     private Button BtnCancelarCadastroFornecedor;
     private Button BtnCancelarCadastroCategoria;

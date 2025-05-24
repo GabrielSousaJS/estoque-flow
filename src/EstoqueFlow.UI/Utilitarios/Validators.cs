@@ -79,4 +79,12 @@ public static class Validators
 
         return true;
     }
+
+    public static void AllowNumber(KeyPressEventArgs e)
+    {
+        if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+        {
+            e.Handled = true;
+        }
+    }
 }

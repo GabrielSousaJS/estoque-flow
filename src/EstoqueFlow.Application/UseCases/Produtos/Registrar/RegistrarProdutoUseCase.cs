@@ -12,6 +12,6 @@ public class RegistrarProdutoUseCase(IProdutoRepository produtoRepository) : IRe
 
         var produto = await produtoRepository.Adicionar(entidade);
 
-        return produto.ToDto();
+        return produto.ToNovoProdutoDto();
     }
 }
