@@ -17,7 +17,7 @@ public class MovimentacaoResponse
     public string Observacao { get; set; } = string.Empty;
     [DisplayName("Usuário ID")]
     public int UsuarioId { get; set; }
-    [DisplayName("Usuário")]
+    [DisplayName("Usuário Responsável")]
     public string NomeUsuario { get; set; } = string.Empty;
     [DisplayName("Produto ID")]
     public int ProdutoId { get; set; }

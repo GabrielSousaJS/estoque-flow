@@ -1,10 +1,12 @@
 ﻿using EstoqueFlow.Application.Services.Sessao;
 using EstoqueFlow.Application.UseCases.Categorias.ObterTodas;
+using EstoqueFlow.Application.UseCases.Categorias.Registrar;
 using EstoqueFlow.Application.UseCases.Fornecedores.ObterTodos;
 using EstoqueFlow.Application.UseCases.Fornecedores.Registrar;
 using EstoqueFlow.Application.UseCases.Movimentacoes.ObterTodos;
 using EstoqueFlow.Application.UseCases.Produtos.ObterTodos;
 using EstoqueFlow.Application.UseCases.Usuarios.ObterTodos;
+using EstoqueFlow.Application.ViewModel.Categorias;
 using EstoqueFlow.Application.ViewModel.Fornecedores;
 using EstoqueFlow.UI.Utilitarios;
 
@@ -21,8 +23,9 @@ public partial class FrmPrincipal : Form
     private readonly IObterTodosUsuariosUseCase _obterTodosUsuariosUseCase;
     #endregion
 
-    #region FORNECEDOR USE CASES
+    #region USE CASES PARA CADASTRO
     private readonly IRegistrarFornecedorUseCase _registrarFornecedorUseCase;
+    private readonly IRegistrarCategoriaUseCase _registrarCategoriaUseCase;
     #endregion
 
     public FrmPrincipal(
@@ -32,7 +35,8 @@ public partial class FrmPrincipal : Form
         IObterTodosProdutosUseCase obterTodosProdutosUseCase,
         IObterTodosMovimentacoesUseCase obterTodosMovimentacoesUseCase,
         IObterTodosUsuariosUseCase obterTodosUsuariosUseCase,
-        IRegistrarFornecedorUseCase registrarFornecedorUseCase
+        IRegistrarFornecedorUseCase registrarFornecedorUseCase,
+        IRegistrarCategoriaUseCase registrarCategoriaUseCase
     )
     {
         _sessaoUsuarioService = sessaoUsuarioService;
@@ -42,6 +46,7 @@ public partial class FrmPrincipal : Form
         _obterTodosMovimentacoesUseCase = obterTodosMovimentacoesUseCase;
         _obterTodosUsuariosUseCase = obterTodosUsuariosUseCase;
         _registrarFornecedorUseCase = registrarFornecedorUseCase;
+        _registrarCategoriaUseCase = registrarCategoriaUseCase;
         InitializeComponent();
     }
 
@@ -127,7 +132,7 @@ public partial class FrmPrincipal : Form
 
     private async void BtnCadastrarFornecedor_Click(object sender, EventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(TxtRazaoSocial.Text) || 
+        if (string.IsNullOrWhiteSpace(TxtRazaoSocial.Text) ||
             string.IsNullOrWhiteSpace(TxtNomeFantasia.Text) ||
             !Validators.ValidarCnpj(TxtCnpj.Text) ||
             !Validators.ValidarTelefoneFixo(TxtTelefoneFixo.Text) ||
@@ -170,12 +175,46 @@ public partial class FrmPrincipal : Form
         LayoutManager.LimparCampos(TbCadastrarCategoria);
         LayoutManager.RestaurarGuiasRemovidas(TabPrincipal, TbCadastrarCategoria, TbCategorias);
     }
+
+    private async void BtnCadastrarCategoria_Click(object sender, EventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(TxtNomeCategoria.Text))
+        {
+            MessageBox.Show("Preencha todos os campos obrigatórios.", "Erro de preenchimento", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+        }
+
+        var request = new CategoriaRequest(nome: TxtNomeCategoria.Text, descricao: TxtDescricaoCategoria.Text);
+
+        try
+        {
+            var categoria = await _registrarCategoriaUseCase.Executar(request);
+
+            MessageBox.Show($"Categoria {categoria.Nome} cadastrada com sucesso!");
+
+            LayoutManager.LimparCampos(TbCadastrarCategoria);
+            CarregarDadosCategoria();
+            BtnCancelarCadastroCategoria_Click(sender, e);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message, "Erro ao cadastrar categoria", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            
+            TxtNomeCategoria.Focus();
+        }
+    }
     #endregion
 
     #region PRODUTO
-    private void BtnAdicionarProduto_Click(object sender, EventArgs e)
+    private async void BtnAdicionarProduto_Click(object sender, EventArgs e)
     {
         LayoutManager.MostraApenasUmaGuia(TabPrincipal, TbCadastrarProduto);
+
+        var categorias = await _obterTodosCategoriasUseCase.Executar();
+        CbCategoria.PreencherComboBox(categorias, "Nome", "Id");
+
+        var fornecedores = await _obterTodosFornecedoresUseCase.Executar();
+        CbFornecedor.PreencherComboBox(fornecedores, "NomeFantasia", "Id");
     }
 
     private void BtnCancelarCadastroProduto_Click(object sender, EventArgs e)

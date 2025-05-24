@@ -529,6 +529,7 @@ partial class FrmPrincipal
         BtnCadastrarCategoria.TabIndex = 11;
         BtnCadastrarCategoria.Text = "Cadastrar";
         BtnCadastrarCategoria.UseVisualStyleBackColor = true;
+        BtnCadastrarCategoria.Click += BtnCadastrarCategoria_Click;
         // 
         // TxtNomeCategoria
         // 
@@ -625,6 +626,7 @@ partial class FrmPrincipal
         NudEstoqueMinimo.Name = "NudEstoqueMinimo";
         NudEstoqueMinimo.Size = new Size(271, 27);
         NudEstoqueMinimo.TabIndex = 15;
+        NudEstoqueMinimo.TextAlign = HorizontalAlignment.Right;
         NudEstoqueMinimo.Value = new decimal(new int[] { 1, 0, 0, 0 });
         // 
         // BtnCadastrarProduto

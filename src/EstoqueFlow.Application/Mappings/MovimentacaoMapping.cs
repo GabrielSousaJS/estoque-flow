@@ -20,10 +20,12 @@ public static class MovimentacaoMapping
 
     public static MovimentacaoResponse ToDto(this Movimentacao from)
     {
+        var saoPauloTimeZone = TimeZoneInfo.FindSystemTimeZoneById("America/Sao_Paulo");
+
         return new MovimentacaoResponse
         {
             Id = from.Id,
-            Data = from.Data,
+            Data = TimeZoneInfo.ConvertTimeFromUtc(from.Data, saoPauloTimeZone),
             Tipo = (int)from.Tipo,
             Quantidade = from.Quantidade,
             Observacao = from.Observacao,

@@ -1,6 +1,8 @@
-﻿namespace EstoqueFlow.UI.Utilitarios;
+﻿using System.Linq.Expressions;
 
-public class LayoutManager
+namespace EstoqueFlow.UI.Utilitarios;
+
+public static class LayoutManager
 {
     private static Dictionary<TabControl, List<TabPage>> guiasRemovidas = new Dictionary<TabControl, List<TabPage>>();
 
@@ -102,5 +104,12 @@ public class LayoutManager
                 LimparCampos(control);
             }
         }
+    }
+
+    public static void PreencherComboBox<T>(this ComboBox comboBox, IEnumerable<T> dados, string displayName, string valueName)
+    {
+        comboBox.DataSource = dados.ToList();
+        comboBox.DisplayMember = displayName;
+        comboBox.ValueMember = valueName;
     }
 }
