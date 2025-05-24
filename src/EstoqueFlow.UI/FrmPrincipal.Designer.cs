@@ -48,9 +48,53 @@ partial class FrmPrincipal
         BtnDesativarConta = new Button();
         DgvUsuarios = new DataGridView();
         TbCadastrarFornecedor = new TabPage();
+        BtnCancelarCadastroFornecedor = new Button();
+        TxtTelefoneFixo = new MaskedTextBox();
+        TxtCnpj = new MaskedTextBox();
+        BtnCadastrarFornecedor = new Button();
+        TxtEmailFornecedor = new TextBox();
+        TxtNomeFantasia = new TextBox();
+        TxtRazaoSocial = new TextBox();
+        label5 = new Label();
+        label4 = new Label();
+        label3 = new Label();
+        label2 = new Label();
+        label1 = new Label();
         TbCadastrarCategoria = new TabPage();
+        BtnCancelarCadastroCategoria = new Button();
+        BtnCadastrarCategoria = new Button();
+        TxtNomeCategoria = new TextBox();
+        TxtDescricaoCategoria = new TextBox();
+        label8 = new Label();
+        label7 = new Label();
         TbCadastrarProduto = new TabPage();
+        BtnCancelarCadastroProduto = new Button();
+        LblErroCadastrarProduto = new Label();
+        NudEstoqueMinimo = new NumericUpDown();
+        BtnCadastrarProduto = new Button();
+        CbFornecedor = new ComboBox();
+        CbCategoria = new ComboBox();
+        TxtValorVenda = new TextBox();
+        TxtValorCompra = new TextBox();
+        TxtDescricaoProduto = new TextBox();
+        TxtNomeProduto = new TextBox();
+        label15 = new Label();
+        label14 = new Label();
+        label13 = new Label();
+        label12 = new Label();
+        label11 = new Label();
+        label10 = new Label();
+        label9 = new Label();
         TbCadastrarMovimentacao = new TabPage();
+        BtnCancelarCadastroMovimentacao = new Button();
+        LblErroCadastrarMovimentacao = new Label();
+        BtnCadastrarMovimentacao = new Button();
+        TxtObservacaoMovimentacao = new TextBox();
+        label18 = new Label();
+        NudQuantidade = new NumericUpDown();
+        label17 = new Label();
+        CbTipoMovimentacao = new ComboBox();
+        label16 = new Label();
         TabPrincipal.SuspendLayout();
         TbFornecedores.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)DgvFornecedores).BeginInit();
@@ -62,6 +106,12 @@ partial class FrmPrincipal
         ((System.ComponentModel.ISupportInitialize)DgvMovimentacoes).BeginInit();
         TbUsuarios.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)DgvUsuarios).BeginInit();
+        TbCadastrarFornecedor.SuspendLayout();
+        TbCadastrarCategoria.SuspendLayout();
+        TbCadastrarProduto.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)NudEstoqueMinimo).BeginInit();
+        TbCadastrarMovimentacao.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)NudQuantidade).BeginInit();
         SuspendLayout();
         // 
         // LblUsuario
@@ -308,6 +358,18 @@ partial class FrmPrincipal
         // 
         // TbCadastrarFornecedor
         // 
+        TbCadastrarFornecedor.Controls.Add(BtnCancelarCadastroFornecedor);
+        TbCadastrarFornecedor.Controls.Add(TxtTelefoneFixo);
+        TbCadastrarFornecedor.Controls.Add(TxtCnpj);
+        TbCadastrarFornecedor.Controls.Add(BtnCadastrarFornecedor);
+        TbCadastrarFornecedor.Controls.Add(TxtEmailFornecedor);
+        TbCadastrarFornecedor.Controls.Add(TxtNomeFantasia);
+        TbCadastrarFornecedor.Controls.Add(TxtRazaoSocial);
+        TbCadastrarFornecedor.Controls.Add(label5);
+        TbCadastrarFornecedor.Controls.Add(label4);
+        TbCadastrarFornecedor.Controls.Add(label3);
+        TbCadastrarFornecedor.Controls.Add(label2);
+        TbCadastrarFornecedor.Controls.Add(label1);
         TbCadastrarFornecedor.Location = new Point(4, 29);
         TbCadastrarFornecedor.Name = "TbCadastrarFornecedor";
         TbCadastrarFornecedor.Padding = new Padding(3);
@@ -316,8 +378,129 @@ partial class FrmPrincipal
         TbCadastrarFornecedor.Text = "Cadastrar Fornecedor";
         TbCadastrarFornecedor.UseVisualStyleBackColor = true;
         // 
+        // BtnCancelarCadastroFornecedor
+        // 
+        BtnCancelarCadastroFornecedor.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+        BtnCancelarCadastroFornecedor.Location = new Point(5, 471);
+        BtnCancelarCadastroFornecedor.Name = "BtnCancelarCadastroFornecedor";
+        BtnCancelarCadastroFornecedor.Size = new Size(139, 29);
+        BtnCancelarCadastroFornecedor.TabIndex = 14;
+        BtnCancelarCadastroFornecedor.Text = "Cancelar";
+        BtnCancelarCadastroFornecedor.UseVisualStyleBackColor = true;
+        BtnCancelarCadastroFornecedor.Click += BtnCancelarCadastroFornecedor_Click;
+        // 
+        // TxtTelefoneFixo
+        // 
+        TxtTelefoneFixo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        TxtTelefoneFixo.Location = new Point(357, 236);
+        TxtTelefoneFixo.Mask = "(00) 0000-0000";
+        TxtTelefoneFixo.Name = "TxtTelefoneFixo";
+        TxtTelefoneFixo.Size = new Size(271, 27);
+        TxtTelefoneFixo.TabIndex = 13;
+        // 
+        // TxtCnpj
+        // 
+        TxtCnpj.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        TxtCnpj.Location = new Point(357, 172);
+        TxtCnpj.Mask = "00,000,000/0000-00";
+        TxtCnpj.Name = "TxtCnpj";
+        TxtCnpj.Size = new Size(271, 27);
+        TxtCnpj.TabIndex = 12;
+        // 
+        // BtnCadastrarFornecedor
+        // 
+        BtnCadastrarFornecedor.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+        BtnCadastrarFornecedor.Location = new Point(839, 471);
+        BtnCadastrarFornecedor.Name = "BtnCadastrarFornecedor";
+        BtnCadastrarFornecedor.Size = new Size(139, 29);
+        BtnCadastrarFornecedor.TabIndex = 10;
+        BtnCadastrarFornecedor.Text = "Cadastrar";
+        BtnCadastrarFornecedor.UseVisualStyleBackColor = true;
+        BtnCadastrarFornecedor.Click += BtnCadastrarFornecedor_Click;
+        // 
+        // TxtEmailFornecedor
+        // 
+        TxtEmailFornecedor.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        TxtEmailFornecedor.CharacterCasing = CharacterCasing.Lower;
+        TxtEmailFornecedor.Location = new Point(357, 300);
+        TxtEmailFornecedor.Name = "TxtEmailFornecedor";
+        TxtEmailFornecedor.Size = new Size(271, 27);
+        TxtEmailFornecedor.TabIndex = 9;
+        // 
+        // TxtNomeFantasia
+        // 
+        TxtNomeFantasia.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        TxtNomeFantasia.Location = new Point(357, 107);
+        TxtNomeFantasia.Name = "TxtNomeFantasia";
+        TxtNomeFantasia.Size = new Size(271, 27);
+        TxtNomeFantasia.TabIndex = 6;
+        // 
+        // TxtRazaoSocial
+        // 
+        TxtRazaoSocial.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        TxtRazaoSocial.Location = new Point(357, 41);
+        TxtRazaoSocial.Name = "TxtRazaoSocial";
+        TxtRazaoSocial.Size = new Size(271, 27);
+        TxtRazaoSocial.TabIndex = 5;
+        // 
+        // label5
+        // 
+        label5.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        label5.AutoSize = true;
+        label5.Location = new Point(357, 277);
+        label5.Name = "label5";
+        label5.Size = new Size(52, 20);
+        label5.TabIndex = 4;
+        label5.Text = "E-mail";
+        // 
+        // label4
+        // 
+        label4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        label4.AutoSize = true;
+        label4.Location = new Point(357, 213);
+        label4.Name = "label4";
+        label4.Size = new Size(97, 20);
+        label4.TabIndex = 3;
+        label4.Text = "Telefone Fixo";
+        // 
+        // label3
+        // 
+        label3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        label3.AutoSize = true;
+        label3.Location = new Point(357, 149);
+        label3.Name = "label3";
+        label3.Size = new Size(41, 20);
+        label3.TabIndex = 2;
+        label3.Text = "CNPJ";
+        // 
+        // label2
+        // 
+        label2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        label2.AutoSize = true;
+        label2.Location = new Point(357, 84);
+        label2.Name = "label2";
+        label2.Size = new Size(107, 20);
+        label2.TabIndex = 1;
+        label2.Text = "Nome Fantasia";
+        // 
+        // label1
+        // 
+        label1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        label1.AutoSize = true;
+        label1.Location = new Point(357, 18);
+        label1.Name = "label1";
+        label1.Size = new Size(94, 20);
+        label1.TabIndex = 0;
+        label1.Text = "Razão Social";
+        // 
         // TbCadastrarCategoria
         // 
+        TbCadastrarCategoria.Controls.Add(BtnCancelarCadastroCategoria);
+        TbCadastrarCategoria.Controls.Add(BtnCadastrarCategoria);
+        TbCadastrarCategoria.Controls.Add(TxtNomeCategoria);
+        TbCadastrarCategoria.Controls.Add(TxtDescricaoCategoria);
+        TbCadastrarCategoria.Controls.Add(label8);
+        TbCadastrarCategoria.Controls.Add(label7);
         TbCadastrarCategoria.Location = new Point(4, 29);
         TbCadastrarCategoria.Name = "TbCadastrarCategoria";
         TbCadastrarCategoria.Padding = new Padding(3);
@@ -326,8 +509,82 @@ partial class FrmPrincipal
         TbCadastrarCategoria.Text = "Cadastrar Categoria";
         TbCadastrarCategoria.UseVisualStyleBackColor = true;
         // 
+        // BtnCancelarCadastroCategoria
+        // 
+        BtnCancelarCadastroCategoria.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+        BtnCancelarCadastroCategoria.Location = new Point(3, 471);
+        BtnCancelarCadastroCategoria.Name = "BtnCancelarCadastroCategoria";
+        BtnCancelarCadastroCategoria.Size = new Size(139, 29);
+        BtnCancelarCadastroCategoria.TabIndex = 15;
+        BtnCancelarCadastroCategoria.Text = "Cancelar";
+        BtnCancelarCadastroCategoria.UseVisualStyleBackColor = true;
+        BtnCancelarCadastroCategoria.Click += BtnCancelarCadastroCategoria_Click;
+        // 
+        // BtnCadastrarCategoria
+        // 
+        BtnCadastrarCategoria.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+        BtnCadastrarCategoria.Location = new Point(839, 471);
+        BtnCadastrarCategoria.Name = "BtnCadastrarCategoria";
+        BtnCadastrarCategoria.Size = new Size(139, 29);
+        BtnCadastrarCategoria.TabIndex = 11;
+        BtnCadastrarCategoria.Text = "Cadastrar";
+        BtnCadastrarCategoria.UseVisualStyleBackColor = true;
+        // 
+        // TxtNomeCategoria
+        // 
+        TxtNomeCategoria.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        TxtNomeCategoria.Location = new Point(357, 73);
+        TxtNomeCategoria.Name = "TxtNomeCategoria";
+        TxtNomeCategoria.Size = new Size(271, 27);
+        TxtNomeCategoria.TabIndex = 3;
+        // 
+        // TxtDescricaoCategoria
+        // 
+        TxtDescricaoCategoria.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        TxtDescricaoCategoria.Location = new Point(357, 139);
+        TxtDescricaoCategoria.Name = "TxtDescricaoCategoria";
+        TxtDescricaoCategoria.Size = new Size(271, 27);
+        TxtDescricaoCategoria.TabIndex = 2;
+        // 
+        // label8
+        // 
+        label8.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        label8.AutoSize = true;
+        label8.Location = new Point(357, 116);
+        label8.Name = "label8";
+        label8.Size = new Size(74, 20);
+        label8.TabIndex = 1;
+        label8.Text = "Descrição";
+        // 
+        // label7
+        // 
+        label7.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        label7.AutoSize = true;
+        label7.Location = new Point(357, 50);
+        label7.Name = "label7";
+        label7.Size = new Size(119, 20);
+        label7.TabIndex = 0;
+        label7.Text = "Nome Categoria";
+        // 
         // TbCadastrarProduto
         // 
+        TbCadastrarProduto.Controls.Add(BtnCancelarCadastroProduto);
+        TbCadastrarProduto.Controls.Add(LblErroCadastrarProduto);
+        TbCadastrarProduto.Controls.Add(NudEstoqueMinimo);
+        TbCadastrarProduto.Controls.Add(BtnCadastrarProduto);
+        TbCadastrarProduto.Controls.Add(CbFornecedor);
+        TbCadastrarProduto.Controls.Add(CbCategoria);
+        TbCadastrarProduto.Controls.Add(TxtValorVenda);
+        TbCadastrarProduto.Controls.Add(TxtValorCompra);
+        TbCadastrarProduto.Controls.Add(TxtDescricaoProduto);
+        TbCadastrarProduto.Controls.Add(TxtNomeProduto);
+        TbCadastrarProduto.Controls.Add(label15);
+        TbCadastrarProduto.Controls.Add(label14);
+        TbCadastrarProduto.Controls.Add(label13);
+        TbCadastrarProduto.Controls.Add(label12);
+        TbCadastrarProduto.Controls.Add(label11);
+        TbCadastrarProduto.Controls.Add(label10);
+        TbCadastrarProduto.Controls.Add(label9);
         TbCadastrarProduto.Location = new Point(4, 29);
         TbCadastrarProduto.Name = "TbCadastrarProduto";
         TbCadastrarProduto.Padding = new Padding(3);
@@ -336,8 +593,168 @@ partial class FrmPrincipal
         TbCadastrarProduto.Text = "Cadastrar Produto";
         TbCadastrarProduto.UseVisualStyleBackColor = true;
         // 
+        // BtnCancelarCadastroProduto
+        // 
+        BtnCancelarCadastroProduto.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+        BtnCancelarCadastroProduto.Location = new Point(3, 471);
+        BtnCancelarCadastroProduto.Name = "BtnCancelarCadastroProduto";
+        BtnCancelarCadastroProduto.Size = new Size(139, 29);
+        BtnCancelarCadastroProduto.TabIndex = 17;
+        BtnCancelarCadastroProduto.Text = "Cancelar";
+        BtnCancelarCadastroProduto.UseVisualStyleBackColor = true;
+        BtnCancelarCadastroProduto.Click += BtnCancelarCadastroProduto_Click;
+        // 
+        // LblErroCadastrarProduto
+        // 
+        LblErroCadastrarProduto.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        LblErroCadastrarProduto.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        LblErroCadastrarProduto.ForeColor = Color.Red;
+        LblErroCadastrarProduto.Location = new Point(19, 339);
+        LblErroCadastrarProduto.Name = "LblErroCadastrarProduto";
+        LblErroCadastrarProduto.Size = new Size(271, 20);
+        LblErroCadastrarProduto.TabIndex = 16;
+        LblErroCadastrarProduto.Text = "Verifique os dados e tente novamente.";
+        LblErroCadastrarProduto.TextAlign = ContentAlignment.MiddleCenter;
+        LblErroCadastrarProduto.Visible = false;
+        // 
+        // NudEstoqueMinimo
+        // 
+        NudEstoqueMinimo.Location = new Point(19, 204);
+        NudEstoqueMinimo.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
+        NudEstoqueMinimo.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+        NudEstoqueMinimo.Name = "NudEstoqueMinimo";
+        NudEstoqueMinimo.Size = new Size(271, 27);
+        NudEstoqueMinimo.TabIndex = 15;
+        NudEstoqueMinimo.Value = new decimal(new int[] { 1, 0, 0, 0 });
+        // 
+        // BtnCadastrarProduto
+        // 
+        BtnCadastrarProduto.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+        BtnCadastrarProduto.Location = new Point(839, 471);
+        BtnCadastrarProduto.Name = "BtnCadastrarProduto";
+        BtnCadastrarProduto.Size = new Size(139, 29);
+        BtnCadastrarProduto.TabIndex = 14;
+        BtnCadastrarProduto.Text = "Cadastrar";
+        BtnCadastrarProduto.UseVisualStyleBackColor = true;
+        // 
+        // CbFornecedor
+        // 
+        CbFornecedor.FormattingEnabled = true;
+        CbFornecedor.Location = new Point(357, 204);
+        CbFornecedor.Name = "CbFornecedor";
+        CbFornecedor.Size = new Size(271, 28);
+        CbFornecedor.TabIndex = 13;
+        // 
+        // CbCategoria
+        // 
+        CbCategoria.FormattingEnabled = true;
+        CbCategoria.Location = new Point(19, 289);
+        CbCategoria.Name = "CbCategoria";
+        CbCategoria.Size = new Size(271, 28);
+        CbCategoria.TabIndex = 12;
+        // 
+        // TxtValorVenda
+        // 
+        TxtValorVenda.Location = new Point(357, 118);
+        TxtValorVenda.Name = "TxtValorVenda";
+        TxtValorVenda.Size = new Size(271, 27);
+        TxtValorVenda.TabIndex = 10;
+        // 
+        // TxtValorCompra
+        // 
+        TxtValorCompra.Location = new Point(19, 118);
+        TxtValorCompra.Name = "TxtValorCompra";
+        TxtValorCompra.Size = new Size(271, 27);
+        TxtValorCompra.TabIndex = 9;
+        // 
+        // TxtDescricaoProduto
+        // 
+        TxtDescricaoProduto.Location = new Point(357, 39);
+        TxtDescricaoProduto.Name = "TxtDescricaoProduto";
+        TxtDescricaoProduto.Size = new Size(271, 27);
+        TxtDescricaoProduto.TabIndex = 8;
+        // 
+        // TxtNomeProduto
+        // 
+        TxtNomeProduto.Location = new Point(19, 39);
+        TxtNomeProduto.Name = "TxtNomeProduto";
+        TxtNomeProduto.Size = new Size(271, 27);
+        TxtNomeProduto.TabIndex = 7;
+        // 
+        // label15
+        // 
+        label15.AutoSize = true;
+        label15.Location = new Point(357, 181);
+        label15.Name = "label15";
+        label15.Size = new Size(84, 20);
+        label15.TabIndex = 6;
+        label15.Text = "Fornecedor";
+        // 
+        // label14
+        // 
+        label14.AutoSize = true;
+        label14.Location = new Point(19, 267);
+        label14.Name = "label14";
+        label14.Size = new Size(74, 20);
+        label14.TabIndex = 5;
+        label14.Text = "Categoria";
+        // 
+        // label13
+        // 
+        label13.AutoSize = true;
+        label13.Location = new Point(19, 181);
+        label13.Name = "label13";
+        label13.Size = new Size(117, 20);
+        label13.TabIndex = 4;
+        label13.Text = "Estoque Mínimo";
+        // 
+        // label12
+        // 
+        label12.AutoSize = true;
+        label12.Location = new Point(357, 95);
+        label12.Name = "label12";
+        label12.Size = new Size(109, 20);
+        label12.TabIndex = 3;
+        label12.Text = "Valor de Venda";
+        // 
+        // label11
+        // 
+        label11.AutoSize = true;
+        label11.Location = new Point(19, 95);
+        label11.Name = "label11";
+        label11.Size = new Size(121, 20);
+        label11.TabIndex = 2;
+        label11.Text = "Valor de Compra";
+        // 
+        // label10
+        // 
+        label10.AutoSize = true;
+        label10.Location = new Point(357, 16);
+        label10.Name = "label10";
+        label10.Size = new Size(74, 20);
+        label10.TabIndex = 1;
+        label10.Text = "Descrição";
+        // 
+        // label9
+        // 
+        label9.AutoSize = true;
+        label9.Location = new Point(19, 16);
+        label9.Name = "label9";
+        label9.Size = new Size(107, 20);
+        label9.TabIndex = 0;
+        label9.Text = "Nome Produto";
+        // 
         // TbCadastrarMovimentacao
         // 
+        TbCadastrarMovimentacao.Controls.Add(BtnCancelarCadastroMovimentacao);
+        TbCadastrarMovimentacao.Controls.Add(LblErroCadastrarMovimentacao);
+        TbCadastrarMovimentacao.Controls.Add(BtnCadastrarMovimentacao);
+        TbCadastrarMovimentacao.Controls.Add(TxtObservacaoMovimentacao);
+        TbCadastrarMovimentacao.Controls.Add(label18);
+        TbCadastrarMovimentacao.Controls.Add(NudQuantidade);
+        TbCadastrarMovimentacao.Controls.Add(label17);
+        TbCadastrarMovimentacao.Controls.Add(CbTipoMovimentacao);
+        TbCadastrarMovimentacao.Controls.Add(label16);
         TbCadastrarMovimentacao.Location = new Point(4, 29);
         TbCadastrarMovimentacao.Name = "TbCadastrarMovimentacao";
         TbCadastrarMovimentacao.Padding = new Padding(3);
@@ -345,6 +762,98 @@ partial class FrmPrincipal
         TbCadastrarMovimentacao.TabIndex = 8;
         TbCadastrarMovimentacao.Text = "Cadastrar Movimentação";
         TbCadastrarMovimentacao.UseVisualStyleBackColor = true;
+        // 
+        // BtnCancelarCadastroMovimentacao
+        // 
+        BtnCancelarCadastroMovimentacao.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+        BtnCancelarCadastroMovimentacao.Location = new Point(3, 471);
+        BtnCancelarCadastroMovimentacao.Name = "BtnCancelarCadastroMovimentacao";
+        BtnCancelarCadastroMovimentacao.Size = new Size(139, 29);
+        BtnCancelarCadastroMovimentacao.TabIndex = 18;
+        BtnCancelarCadastroMovimentacao.Text = "Cancelar";
+        BtnCancelarCadastroMovimentacao.UseVisualStyleBackColor = true;
+        BtnCancelarCadastroMovimentacao.Click += BtnCancelarCadastroMovimentacao_Click;
+        // 
+        // LblErroCadastrarMovimentacao
+        // 
+        LblErroCadastrarMovimentacao.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        LblErroCadastrarMovimentacao.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        LblErroCadastrarMovimentacao.ForeColor = Color.Red;
+        LblErroCadastrarMovimentacao.Location = new Point(357, 243);
+        LblErroCadastrarMovimentacao.Name = "LblErroCadastrarMovimentacao";
+        LblErroCadastrarMovimentacao.Size = new Size(271, 20);
+        LblErroCadastrarMovimentacao.TabIndex = 17;
+        LblErroCadastrarMovimentacao.Text = "Verifique os dados e tente novamente.";
+        LblErroCadastrarMovimentacao.TextAlign = ContentAlignment.MiddleCenter;
+        LblErroCadastrarMovimentacao.Visible = false;
+        // 
+        // BtnCadastrarMovimentacao
+        // 
+        BtnCadastrarMovimentacao.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+        BtnCadastrarMovimentacao.Location = new Point(839, 471);
+        BtnCadastrarMovimentacao.Name = "BtnCadastrarMovimentacao";
+        BtnCadastrarMovimentacao.Size = new Size(139, 29);
+        BtnCadastrarMovimentacao.TabIndex = 15;
+        BtnCadastrarMovimentacao.Text = "Cadastrar";
+        BtnCadastrarMovimentacao.UseVisualStyleBackColor = true;
+        // 
+        // TxtObservacaoMovimentacao
+        // 
+        TxtObservacaoMovimentacao.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        TxtObservacaoMovimentacao.Location = new Point(357, 214);
+        TxtObservacaoMovimentacao.Name = "TxtObservacaoMovimentacao";
+        TxtObservacaoMovimentacao.Size = new Size(271, 27);
+        TxtObservacaoMovimentacao.TabIndex = 5;
+        // 
+        // label18
+        // 
+        label18.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        label18.AutoSize = true;
+        label18.Location = new Point(357, 191);
+        label18.Name = "label18";
+        label18.Size = new Size(87, 20);
+        label18.TabIndex = 4;
+        label18.Text = "Observação";
+        // 
+        // NudQuantidade
+        // 
+        NudQuantidade.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        NudQuantidade.Location = new Point(357, 139);
+        NudQuantidade.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
+        NudQuantidade.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+        NudQuantidade.Name = "NudQuantidade";
+        NudQuantidade.Size = new Size(271, 27);
+        NudQuantidade.TabIndex = 3;
+        NudQuantidade.Value = new decimal(new int[] { 1, 0, 0, 0 });
+        // 
+        // label17
+        // 
+        label17.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        label17.AutoSize = true;
+        label17.Location = new Point(357, 116);
+        label17.Name = "label17";
+        label17.Size = new Size(87, 20);
+        label17.TabIndex = 2;
+        label17.Text = "Quantidade";
+        // 
+        // CbTipoMovimentacao
+        // 
+        CbTipoMovimentacao.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        CbTipoMovimentacao.FormattingEnabled = true;
+        CbTipoMovimentacao.Location = new Point(357, 64);
+        CbTipoMovimentacao.Name = "CbTipoMovimentacao";
+        CbTipoMovimentacao.Size = new Size(271, 28);
+        CbTipoMovimentacao.TabIndex = 1;
+        // 
+        // label16
+        // 
+        label16.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        label16.AutoSize = true;
+        label16.Location = new Point(357, 41);
+        label16.Name = "label16";
+        label16.Size = new Size(163, 20);
+        label16.TabIndex = 0;
+        label16.Text = "Tipo de Movimentação";
         // 
         // FrmPrincipal
         // 
@@ -370,6 +879,16 @@ partial class FrmPrincipal
         ((System.ComponentModel.ISupportInitialize)DgvMovimentacoes).EndInit();
         TbUsuarios.ResumeLayout(false);
         ((System.ComponentModel.ISupportInitialize)DgvUsuarios).EndInit();
+        TbCadastrarFornecedor.ResumeLayout(false);
+        TbCadastrarFornecedor.PerformLayout();
+        TbCadastrarCategoria.ResumeLayout(false);
+        TbCadastrarCategoria.PerformLayout();
+        TbCadastrarProduto.ResumeLayout(false);
+        TbCadastrarProduto.PerformLayout();
+        ((System.ComponentModel.ISupportInitialize)NudEstoqueMinimo).EndInit();
+        TbCadastrarMovimentacao.ResumeLayout(false);
+        TbCadastrarMovimentacao.PerformLayout();
+        ((System.ComponentModel.ISupportInitialize)NudQuantidade).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -397,4 +916,48 @@ partial class FrmPrincipal
     private TabPage TbCadastrarCategoria;
     private TabPage TbCadastrarProduto;
     private TabPage TbCadastrarMovimentacao;
+    private Label label1;
+    private Label label5;
+    private Label label4;
+    private Label label3;
+    private Label label2;
+    private Button BtnCadastrarFornecedor;
+    private TextBox TxtEmailFornecedor;
+    private TextBox TxtNomeFantasia;
+    private TextBox TxtRazaoSocial;
+    private MaskedTextBox TxtTelefoneFixo;
+    private MaskedTextBox TxtCnpj;
+    private Label label8;
+    private Label label7;
+    private TextBox TxtNomeCategoria;
+    private TextBox TxtDescricaoCategoria;
+    private Button BtnCadastrarCategoria;
+    private Label label14;
+    private Label label13;
+    private Label label12;
+    private Label label11;
+    private Label label10;
+    private Label label9;
+    private TextBox TxtValorVenda;
+    private TextBox TxtValorCompra;
+    private TextBox TxtDescricaoProduto;
+    private TextBox TxtNomeProduto;
+    private Label label15;
+    private Button BtnCadastrarProduto;
+    private ComboBox CbFornecedor;
+    private ComboBox CbCategoria;
+    private NumericUpDown NudEstoqueMinimo;
+    private ComboBox CbTipoMovimentacao;
+    private Label label16;
+    private NumericUpDown NudQuantidade;
+    private Label label17;
+    private TextBox TxtObservacaoMovimentacao;
+    private Label label18;
+    private Button BtnCadastrarMovimentacao;
+    private Label LblErroCadastrarProduto;
+    private Label LblErroCadastrarMovimentacao;
+    private Button BtnCancelarCadastroFornecedor;
+    private Button BtnCancelarCadastroCategoria;
+    private Button BtnCancelarCadastroProduto;
+    private Button BtnCancelarCadastroMovimentacao;
 }

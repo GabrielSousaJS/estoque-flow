@@ -10,7 +10,6 @@ public static class MovimentacaoMapping
     {
         return new Movimentacao
         {
-            Data = from.Data,
             Tipo = (TipoMovimentacao)from.Tipo,
             Quantidade = from.Quantidade,
             Observacao = from.Observacao,

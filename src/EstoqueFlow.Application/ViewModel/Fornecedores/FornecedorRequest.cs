@@ -1,10 +1,10 @@
 ﻿namespace EstoqueFlow.Application.ViewModel.Fornecedores;
 
-public class FornecedorRequest
+public class FornecedorRequest(string razaoSocial, string nomeFantasia, string cnpj, string telefone, string email)
 {
-    public string RazaoSocial { get; set; } = string.Empty;
-    public string NomeFantasia { get; set; } = string.Empty;
-    public string CNPJ { get; } = string.Empty;
-    public string Telefone { get; set; } = string.Empty;
-    public string Email { get; set; } = string.Empty;
+    public string RazaoSocial { get; set; } = razaoSocial;
+    public string NomeFantasia { get; set; } = nomeFantasia;
+    public string CNPJ { get; } = cnpj;
+    public string Telefone { get; set; } = telefone;
+    public string Email { get; set; } = email;
 }

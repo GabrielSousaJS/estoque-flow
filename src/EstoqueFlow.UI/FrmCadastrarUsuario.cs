@@ -48,17 +48,15 @@ public partial class FrmCadastrarUsuario : Form
     {
         if (!Validators.VerificarNome(TxtNome.Text) || !Validators.VerificarEmail(TxtEmail.Text) || string.IsNullOrEmpty(TxtSenha.Text))
         {
-            LblMensagemErroCadastro.Visible = true;
+            MessageBox.Show("Verifique os dados e tente novamente", "Erro de preenchimento", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return;
         }
 
-        var viewModel = new UsuarioRequest(nome: TxtNome.Text, email: TxtEmail.Text, senha: TxtSenha.Text);
+        var request = new UsuarioRequest(nome: TxtNome.Text, email: TxtEmail.Text, senha: TxtSenha.Text);
 
         try
         {
-            var resposta = await _registrarUsuarioUseCase.Executar(viewModel);
-
-            LblMensagemErroCadastro.Visible = false;
+            var resposta = await _registrarUsuarioUseCase.Executar(request);
 
             _sessaoUsuarioService.DefinirUsuarioAtual(resposta);
 
@@ -66,8 +64,7 @@ public partial class FrmCadastrarUsuario : Form
         }
         catch (Exception ex)
         {
-            LblMensagemErroCadastro.Visible = true;
-            LblMensagemErroCadastro.Text = ex.Message;
+            MessageBox.Show(ex.Message, "Erro ao realizar cadastro", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             TxtNome.Focus();
         }

@@ -8,4 +8,6 @@ public interface IFornecedorRepository
     Task Atualizar(Fornecedor fornecedor);
     Task<IEnumerable<Fornecedor>> ObterTodos();
     Task<Fornecedor> ObterPorId(int id);
+    Task<Fornecedor?> ObterFornecedorPorCnpj(string cnpj);
+    Task<Fornecedor?> ObterFornecedorPorEmail(string email);
 }

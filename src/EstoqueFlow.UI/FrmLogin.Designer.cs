@@ -31,7 +31,6 @@ partial class FrmLogin
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
         label1 = new Label();
         label2 = new Label();
-        LblMensagemErroLogin = new Label();
         label4 = new Label();
         TxtSenha = new TextBox();
         TxtEmail = new TextBox();
@@ -56,18 +55,6 @@ partial class FrmLogin
         label2.Size = new Size(49, 20);
         label2.TabIndex = 4;
         label2.Text = "Senha";
-        // 
-        // LblMensagemErroLogin
-        // 
-        LblMensagemErroLogin.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        LblMensagemErroLogin.ForeColor = Color.Red;
-        LblMensagemErroLogin.Location = new Point(214, 198);
-        LblMensagemErroLogin.Name = "LblMensagemErroLogin";
-        LblMensagemErroLogin.Size = new Size(271, 20);
-        LblMensagemErroLogin.TabIndex = 5;
-        LblMensagemErroLogin.Text = "Verifique os dados e tente novamente.";
-        LblMensagemErroLogin.TextAlign = ContentAlignment.MiddleCenter;
-        LblMensagemErroLogin.Visible = false;
         // 
         // label4
         // 
@@ -129,7 +116,6 @@ partial class FrmLogin
         Controls.Add(TxtEmail);
         Controls.Add(TxtSenha);
         Controls.Add(label4);
-        Controls.Add(LblMensagemErroLogin);
         Controls.Add(label2);
         Controls.Add(label1);
         FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -146,7 +132,6 @@ partial class FrmLogin
 
     private Label label1;
     private Label label2;
-    private Label LblMensagemErroLogin;
     private Label label4;
     private TextBox TxtSenha;
     private TextBox TxtEmail;

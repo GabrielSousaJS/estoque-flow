@@ -1,9 +1,11 @@
 ﻿using EstoqueFlow.Application.Services.Sessao;
 using EstoqueFlow.Application.UseCases.Categorias.ObterTodas;
 using EstoqueFlow.Application.UseCases.Fornecedores.ObterTodos;
+using EstoqueFlow.Application.UseCases.Fornecedores.Registrar;
 using EstoqueFlow.Application.UseCases.Movimentacoes.ObterTodos;
 using EstoqueFlow.Application.UseCases.Produtos.ObterTodos;
 using EstoqueFlow.Application.UseCases.Usuarios.ObterTodos;
+using EstoqueFlow.Application.ViewModel.Fornecedores;
 using EstoqueFlow.UI.Utilitarios;
 
 namespace EstoqueFlow.UI;
@@ -19,13 +21,18 @@ public partial class FrmPrincipal : Form
     private readonly IObterTodosUsuariosUseCase _obterTodosUsuariosUseCase;
     #endregion
 
+    #region FORNECEDOR USE CASES
+    private readonly IRegistrarFornecedorUseCase _registrarFornecedorUseCase;
+    #endregion
+
     public FrmPrincipal(
         ISessaoUsuarioService sessaoUsuarioService,
         IObterTodosFornecedoresUseCase obterTodosFornecedoresUseCase,
         IObterTodosCategoriasUseCase obterTodosCategoriasUseCase,
         IObterTodosProdutosUseCase obterTodosProdutosUseCase,
         IObterTodosMovimentacoesUseCase obterTodosMovimentacoesUseCase,
-        IObterTodosUsuariosUseCase obterTodosUsuariosUseCase
+        IObterTodosUsuariosUseCase obterTodosUsuariosUseCase,
+        IRegistrarFornecedorUseCase registrarFornecedorUseCase
     )
     {
         _sessaoUsuarioService = sessaoUsuarioService;
@@ -34,6 +41,7 @@ public partial class FrmPrincipal : Form
         _obterTodosProdutosUseCase = obterTodosProdutosUseCase;
         _obterTodosMovimentacoesUseCase = obterTodosMovimentacoesUseCase;
         _obterTodosUsuariosUseCase = obterTodosUsuariosUseCase;
+        _registrarFornecedorUseCase = registrarFornecedorUseCase;
         InitializeComponent();
     }
 
@@ -110,12 +118,57 @@ public partial class FrmPrincipal : Form
     {
         LayoutManager.MostraApenasUmaGuia(TabPrincipal, TbCadastrarFornecedor);
     }
+
+    private void BtnCancelarCadastroFornecedor_Click(object sender, EventArgs e)
+    {
+        LayoutManager.LimparCampos(TbCadastrarFornecedor);
+        LayoutManager.RestaurarGuiasRemovidas(TabPrincipal, TbCadastrarFornecedor, TbFornecedores);
+    }
+
+    private async void BtnCadastrarFornecedor_Click(object sender, EventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(TxtRazaoSocial.Text) || 
+            string.IsNullOrWhiteSpace(TxtNomeFantasia.Text) ||
+            !Validators.ValidarCnpj(TxtCnpj.Text) ||
+            !Validators.ValidarTelefoneFixo(TxtTelefoneFixo.Text) ||
+            !Validators.VerificarEmail(TxtEmailFornecedor.Text))
+        {
+            MessageBox.Show("Verifique os dados e tente novamente", "Erro de preenchimento", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+        }
+
+        var request = new FornecedorRequest(razaoSocial: TxtRazaoSocial.Text, nomeFantasia: TxtNomeFantasia.Text, cnpj: TxtCnpj.Text, telefone: TxtTelefoneFixo.Text, email: TxtEmailFornecedor.Text);
+
+        try
+        {
+            var resposta = await _registrarFornecedorUseCase.Executar(request);
+
+            MessageBox.Show($"Fornecedor {resposta.NomeFantasia} cadastrado com sucesso!");
+
+            LayoutManager.LimparCampos(TbCadastrarFornecedor);
+
+            CarregarDadosFornecedor();
+            BtnCancelarCadastroFornecedor_Click(sender, e);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message, "Erro ao cadastrar fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            TxtRazaoSocial.Focus();
+        }
+    }
     #endregion
 
     #region CATEGORIA
     private void BtnAdicionarCategoria_Click(object sender, EventArgs e)
     {
         LayoutManager.MostraApenasUmaGuia(TabPrincipal, TbCadastrarCategoria);
+    }
+
+    private void BtnCancelarCadastroCategoria_Click(object sender, EventArgs e)
+    {
+        LayoutManager.LimparCampos(TbCadastrarCategoria);
+        LayoutManager.RestaurarGuiasRemovidas(TabPrincipal, TbCadastrarCategoria, TbCategorias);
     }
     #endregion
 
@@ -124,12 +177,24 @@ public partial class FrmPrincipal : Form
     {
         LayoutManager.MostraApenasUmaGuia(TabPrincipal, TbCadastrarProduto);
     }
+
+    private void BtnCancelarCadastroProduto_Click(object sender, EventArgs e)
+    {
+        LayoutManager.LimparCampos(TbCadastrarProduto);
+        LayoutManager.RestaurarGuiasRemovidas(TabPrincipal, TbCadastrarProduto, TbProdutos);
+    }
     #endregion
 
     #region MOVIMENTAÇÃO
     private void BtnAdicionarMovimentacao_Click(object sender, EventArgs e)
     {
         LayoutManager.MostraApenasUmaGuia(TabPrincipal, TbCadastrarMovimentacao);
+    }
+
+    private void BtnCancelarCadastroMovimentacao_Click(object sender, EventArgs e)
+    {
+        LayoutManager.LimparCampos(TbCadastrarMovimentacao);
+        LayoutManager.RestaurarGuiasRemovidas(TabPrincipal, TbCadastrarMovimentacao, TbMovimentacoes);
     }
     #endregion
 

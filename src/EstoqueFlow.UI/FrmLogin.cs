@@ -39,17 +39,15 @@ public partial class FrmLogin : Form
     {
         if (!Validators.VerificarEmail(TxtEmail.Text) || string.IsNullOrWhiteSpace(TxtSenha.Text))
         {
-            LblMensagemErroLogin.Visible = true;
+            MessageBox.Show("Verifique os dados e tente novamente", "Erro de preenchimento", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return;
         }
 
-        var viewModel = new LoginRequest(email: TxtEmail.Text, senha: TxtSenha.Text);
+        var request = new LoginRequest(email: TxtEmail.Text, senha: TxtSenha.Text);
 
         try
         {
-            var resposta = await _loginUseCase.Executar(viewModel);
-
-            LblMensagemErroLogin.Visible = false;
+            var resposta = await _loginUseCase.Executar(request);
 
             _sessaoUsuarioService.DefinirUsuarioAtual(resposta);
 
@@ -57,8 +55,7 @@ public partial class FrmLogin : Form
         }
         catch (Exception ex)
         {
-            LblMensagemErroLogin.Visible = true;
-            LblMensagemErroLogin.Text = ex.Message;
+            MessageBox.Show(ex.Message, "Erro de login", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             TxtEmail.Focus();
         }

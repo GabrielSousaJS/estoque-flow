@@ -32,7 +32,6 @@ partial class FrmCadastrarUsuario
         label1 = new Label();
         label2 = new Label();
         label3 = new Label();
-        LblMensagemErroCadastro = new Label();
         LinkLblLogin = new LinkLabel();
         BtnCadastrar = new Button();
         TxtNome = new TextBox();
@@ -66,18 +65,6 @@ partial class FrmCadastrarUsuario
         label3.Size = new Size(49, 20);
         label3.TabIndex = 2;
         label3.Text = "Senha";
-        // 
-        // LblMensagemErroCadastro
-        // 
-        LblMensagemErroCadastro.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        LblMensagemErroCadastro.ForeColor = Color.Red;
-        LblMensagemErroCadastro.Location = new Point(144, 255);
-        LblMensagemErroCadastro.Name = "LblMensagemErroCadastro";
-        LblMensagemErroCadastro.Size = new Size(412, 20);
-        LblMensagemErroCadastro.TabIndex = 3;
-        LblMensagemErroCadastro.Text = "Verifique os dados e tente novamente.";
-        LblMensagemErroCadastro.TextAlign = ContentAlignment.MiddleCenter;
-        LblMensagemErroCadastro.Visible = false;
         // 
         // LinkLblLogin
         // 
@@ -138,7 +125,6 @@ partial class FrmCadastrarUsuario
         Controls.Add(TxtNome);
         Controls.Add(BtnCadastrar);
         Controls.Add(LinkLblLogin);
-        Controls.Add(LblMensagemErroCadastro);
         Controls.Add(label3);
         Controls.Add(label2);
         Controls.Add(label1);
@@ -157,7 +143,6 @@ partial class FrmCadastrarUsuario
     private Label label1;
     private Label label2;
     private Label label3;
-    private Label LblMensagemErroCadastro;
     private LinkLabel LinkLblLogin;
     private Button BtnCadastrar;
     private TextBox TxtNome;

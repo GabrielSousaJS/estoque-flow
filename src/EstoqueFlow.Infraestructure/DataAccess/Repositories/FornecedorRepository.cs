@@ -69,6 +69,48 @@ public class FornecedorRepository : IFornecedorRepository
         });
     }
 
+    public async Task<Fornecedor?> ObterFornecedorPorCnpj(string cnpj)
+    {
+        using var connection = DbConnectionFactory.GetConnection();
+
+        var sql = @"
+            SELECT
+                id AS Id,
+                razao_social AS RazaoSocial,
+                nome_fantasia AS NomeFantasia,
+                cnpj AS Cnpj,
+                telefone AS Telefone,
+                email AS Email
+            FROM
+                fornecedores
+            WHERE
+                cnpj = @Cnpj
+        ";
+
+        return await connection.QuerySingleOrDefaultAsync<Fornecedor>(sql, new { Cnpj = cnpj });
+    }
+
+    public async Task<Fornecedor?> ObterFornecedorPorEmail(string email)
+    {
+        using var connection = DbConnectionFactory.GetConnection();
+
+        var sql = @"
+            SELECT
+                id AS Id,
+                razao_social AS RazaoSocial,
+                nome_fantasia AS NomeFantasia,
+                cnpj AS Cnpj,
+                telefone AS Telefone,
+                email AS Email
+            FROM
+                fornecedores
+            WHERE
+                email = @Email
+        ";
+
+        return await connection.QuerySingleOrDefaultAsync<Fornecedor>(sql, new { Email = email });
+    }
+
     public async Task<Fornecedor> ObterPorId(int id)
     {
         using var connection = DbConnectionFactory.GetConnection();

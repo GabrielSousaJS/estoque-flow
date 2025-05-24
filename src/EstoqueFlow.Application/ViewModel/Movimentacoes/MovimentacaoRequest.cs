@@ -2,7 +2,6 @@
 
 public class MovimentacaoRequest
 {
-    public DateTime Data { get; set; }
     public int Tipo { get; set; } // 1 - Entrada, 2 - Saída
     public int Quantidade { get; set; }
     public string Observacao { get; set; } = string.Empty;
