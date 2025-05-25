@@ -99,6 +99,7 @@ public class MovimentacaoRepository : IMovimentacaoRepository
         string sql = @"
            SELECT
 	            m.id AS Id,
+                m.data AS Data,
 	            m.tipo AS Tipo,
 	            m.quantidade AS Quantidade,
 	            m.observacao AS Observacao,

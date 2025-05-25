@@ -4,12 +4,15 @@ using EstoqueFlow.Application.UseCases.Categorias.Registrar;
 using EstoqueFlow.Application.UseCases.Fornecedores.ObterTodos;
 using EstoqueFlow.Application.UseCases.Fornecedores.Registrar;
 using EstoqueFlow.Application.UseCases.Movimentacoes.ObterTodos;
+using EstoqueFlow.Application.UseCases.Movimentacoes.Registrar;
 using EstoqueFlow.Application.UseCases.Produtos.ObterTodos;
 using EstoqueFlow.Application.UseCases.Produtos.Registrar;
 using EstoqueFlow.Application.UseCases.Usuarios.ObterTodos;
 using EstoqueFlow.Application.ViewModel.Categorias;
 using EstoqueFlow.Application.ViewModel.Fornecedores;
+using EstoqueFlow.Application.ViewModel.Movimentacoes;
 using EstoqueFlow.Application.ViewModel.Produtos;
+using EstoqueFlow.Application.ViewModel.Usuarios;
 using EstoqueFlow.UI.Utilitarios;
 
 namespace EstoqueFlow.UI;
@@ -29,8 +32,10 @@ public partial class FrmPrincipal : Form
     private readonly IRegistrarFornecedorUseCase _registrarFornecedorUseCase;
     private readonly IRegistrarCategoriaUseCase _registrarCategoriaUseCase;
     private readonly IRegistrarProdutoUseCase _registrarProdutoUseCase;
+    private readonly IRegistrarMovimentacaoUseCase _registrarMovimentacaoUseCase;
     #endregion
 
+    private UsuarioResponse usuarioAtual;
     private string _valorAnterior = string.Empty;
 
     public FrmPrincipal(
@@ -42,7 +47,8 @@ public partial class FrmPrincipal : Form
         IObterTodosUsuariosUseCase obterTodosUsuariosUseCase,
         IRegistrarFornecedorUseCase registrarFornecedorUseCase,
         IRegistrarCategoriaUseCase registrarCategoriaUseCase,
-        IRegistrarProdutoUseCase registrarProdutoUseCase
+        IRegistrarProdutoUseCase registrarProdutoUseCase,
+        IRegistrarMovimentacaoUseCase registrarMovimentacaoUseCase
     )
     {
         _sessaoUsuarioService = sessaoUsuarioService;
@@ -54,16 +60,18 @@ public partial class FrmPrincipal : Form
         _registrarFornecedorUseCase = registrarFornecedorUseCase;
         _registrarCategoriaUseCase = registrarCategoriaUseCase;
         _registrarProdutoUseCase = registrarProdutoUseCase;
+        _registrarMovimentacaoUseCase = registrarMovimentacaoUseCase;
+
         InitializeComponent();
     }
 
     #region INICIALIZAÇÃO DE COMPONENTES
     private void FrmPrincipal_Load(object sender, EventArgs e)
     {
-        var usuario = _sessaoUsuarioService.UsuarioAtual;
+        usuarioAtual = _sessaoUsuarioService.UsuarioAtual;
 
-        LblUsuario.Text = usuario != null
-            ? $"Usuário: {usuario.Nome}"
+        LblUsuario.Text = usuarioAtual != null
+            ? $"Usuário: {usuarioAtual.Nome}"
             : "Usuário não definido";
 
         CarregarDadosGridView();
@@ -298,8 +306,13 @@ public partial class FrmPrincipal : Form
     #endregion
 
     #region MOVIMENTAÇÃO
-    private void BtnAdicionarMovimentacao_Click(object sender, EventArgs e)
+    private async void BtnAdicionarMovimentacao_Click(object sender, EventArgs e)
     {
+        CbTipoMovimentacao.PreencherComboBoxTipoMovimentacao();
+
+        var produtos = await _obterTodosProdutosUseCase.Executar();
+        CbProdutoMovimentacao.PreencherComboBox(produtos, "Nome", "Id");
+
         LayoutManager.MostraApenasUmaGuia(TabPrincipal, TbCadastrarMovimentacao);
     }
 
@@ -308,6 +321,34 @@ public partial class FrmPrincipal : Form
         CarregarDadosMovimentacao();
         LayoutManager.LimparCampos(TbCadastrarMovimentacao);
         LayoutManager.RestaurarGuiasRemovidas(TabPrincipal, TbCadastrarMovimentacao, TbMovimentacoes);
+    }
+
+    private async void BtnCadastrarMovimentacao_Click(object sender, EventArgs e)
+    {
+        var request = new MovimentacaoRequest(
+            tipo: (int)CbTipoMovimentacao.SelectedValue,
+            quantidade: (int)NudQuantidade.Value,
+            observacao: TxtObservacaoMovimentacao.Text,
+            usuarioId: usuarioAtual.Id,
+            produtoId: (int)CbProdutoMovimentacao.SelectedValue
+        );
+
+        try
+        {
+            var resposta = await _registrarMovimentacaoUseCase.Executar(request);
+
+            MessageBox.Show($"Movimentação registrada com sucesso!");
+            LayoutManager.LimparCampos(TbCadastrarMovimentacao);
+            
+            CarregarDadosMovimentacao();
+            CarregarDadosProduto();
+            
+            BtnCancelarCadastroMovimentacao_Click(sender, e);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message, "Erro ao cadastrar movimentação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
     #endregion
 

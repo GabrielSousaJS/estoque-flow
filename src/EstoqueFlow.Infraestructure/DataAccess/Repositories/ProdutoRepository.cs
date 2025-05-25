@@ -76,6 +76,23 @@ public class ProdutoRepository : IProdutoRepository
         });
     }
 
+    public async Task AtualizarQuantidade(Produto produto)
+    {
+        using var connection = DbConnectionFactory.GetConnection();
+
+        var sql = @"
+            UPDATE produtos
+            SET quantidade = @Quantidade
+            WHERE id = @Id
+        ";
+
+        await connection.ExecuteAsync(sql, new
+        {
+            produto.Quantidade,
+            produto.Id
+        });
+    }
+
     public async Task<Produto?> ObterPorId(int id)
     {
         using var connection = DbConnectionFactory.GetConnection();

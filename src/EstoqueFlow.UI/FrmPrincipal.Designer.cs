@@ -85,8 +85,9 @@ partial class FrmPrincipal
         label10 = new Label();
         label9 = new Label();
         TbCadastrarMovimentacao = new TabPage();
+        CbProdutoMovimentacao = new ComboBox();
+        label6 = new Label();
         BtnCancelarCadastroMovimentacao = new Button();
-        LblErroCadastrarMovimentacao = new Label();
         BtnCadastrarMovimentacao = new Button();
         TxtObservacaoMovimentacao = new TextBox();
         label18 = new Label();
@@ -542,8 +543,10 @@ partial class FrmPrincipal
         // 
         TxtDescricaoCategoria.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         TxtDescricaoCategoria.Location = new Point(357, 139);
+        TxtDescricaoCategoria.Multiline = true;
         TxtDescricaoCategoria.Name = "TxtDescricaoCategoria";
-        TxtDescricaoCategoria.Size = new Size(271, 27);
+        TxtDescricaoCategoria.ScrollBars = ScrollBars.Vertical;
+        TxtDescricaoCategoria.Size = new Size(271, 200);
         TxtDescricaoCategoria.TabIndex = 2;
         // 
         // label8
@@ -627,14 +630,16 @@ partial class FrmPrincipal
         // 
         // CbFornecedor
         // 
+        CbFornecedor.DropDownStyle = ComboBoxStyle.DropDownList;
         CbFornecedor.FormattingEnabled = true;
-        CbFornecedor.Location = new Point(357, 204);
+        CbFornecedor.Location = new Point(369, 117);
         CbFornecedor.Name = "CbFornecedor";
         CbFornecedor.Size = new Size(271, 28);
         CbFornecedor.TabIndex = 13;
         // 
         // CbCategoria
         // 
+        CbCategoria.DropDownStyle = ComboBoxStyle.DropDownList;
         CbCategoria.FormattingEnabled = true;
         CbCategoria.Location = new Point(19, 289);
         CbCategoria.Name = "CbCategoria";
@@ -643,7 +648,7 @@ partial class FrmPrincipal
         // 
         // TxtValorVenda
         // 
-        TxtValorVenda.Location = new Point(357, 118);
+        TxtValorVenda.Location = new Point(369, 39);
         TxtValorVenda.Name = "TxtValorVenda";
         TxtValorVenda.Size = new Size(271, 27);
         TxtValorVenda.TabIndex = 10;
@@ -663,9 +668,11 @@ partial class FrmPrincipal
         // 
         // TxtDescricaoProduto
         // 
-        TxtDescricaoProduto.Location = new Point(357, 39);
+        TxtDescricaoProduto.Location = new Point(369, 203);
+        TxtDescricaoProduto.Multiline = true;
         TxtDescricaoProduto.Name = "TxtDescricaoProduto";
-        TxtDescricaoProduto.Size = new Size(271, 27);
+        TxtDescricaoProduto.ScrollBars = ScrollBars.Vertical;
+        TxtDescricaoProduto.Size = new Size(408, 114);
         TxtDescricaoProduto.TabIndex = 8;
         // 
         // TxtNomeProduto
@@ -678,7 +685,7 @@ partial class FrmPrincipal
         // label15
         // 
         label15.AutoSize = true;
-        label15.Location = new Point(357, 181);
+        label15.Location = new Point(369, 95);
         label15.Name = "label15";
         label15.Size = new Size(84, 20);
         label15.TabIndex = 6;
@@ -705,7 +712,7 @@ partial class FrmPrincipal
         // label12
         // 
         label12.AutoSize = true;
-        label12.Location = new Point(357, 95);
+        label12.Location = new Point(369, 16);
         label12.Name = "label12";
         label12.Size = new Size(109, 20);
         label12.TabIndex = 3;
@@ -723,7 +730,7 @@ partial class FrmPrincipal
         // label10
         // 
         label10.AutoSize = true;
-        label10.Location = new Point(357, 16);
+        label10.Location = new Point(369, 180);
         label10.Name = "label10";
         label10.Size = new Size(74, 20);
         label10.TabIndex = 1;
@@ -740,8 +747,9 @@ partial class FrmPrincipal
         // 
         // TbCadastrarMovimentacao
         // 
+        TbCadastrarMovimentacao.Controls.Add(CbProdutoMovimentacao);
+        TbCadastrarMovimentacao.Controls.Add(label6);
         TbCadastrarMovimentacao.Controls.Add(BtnCancelarCadastroMovimentacao);
-        TbCadastrarMovimentacao.Controls.Add(LblErroCadastrarMovimentacao);
         TbCadastrarMovimentacao.Controls.Add(BtnCadastrarMovimentacao);
         TbCadastrarMovimentacao.Controls.Add(TxtObservacaoMovimentacao);
         TbCadastrarMovimentacao.Controls.Add(label18);
@@ -757,6 +765,26 @@ partial class FrmPrincipal
         TbCadastrarMovimentacao.Text = "Cadastrar Movimentação";
         TbCadastrarMovimentacao.UseVisualStyleBackColor = true;
         // 
+        // CbProdutoMovimentacao
+        // 
+        CbProdutoMovimentacao.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        CbProdutoMovimentacao.DropDownStyle = ComboBoxStyle.DropDownList;
+        CbProdutoMovimentacao.FormattingEnabled = true;
+        CbProdutoMovimentacao.Location = new Point(357, 209);
+        CbProdutoMovimentacao.Name = "CbProdutoMovimentacao";
+        CbProdutoMovimentacao.Size = new Size(271, 28);
+        CbProdutoMovimentacao.TabIndex = 20;
+        // 
+        // label6
+        // 
+        label6.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        label6.AutoSize = true;
+        label6.Location = new Point(357, 186);
+        label6.Name = "label6";
+        label6.Size = new Size(62, 20);
+        label6.TabIndex = 19;
+        label6.Text = "Produto";
+        // 
         // BtnCancelarCadastroMovimentacao
         // 
         BtnCancelarCadastroMovimentacao.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
@@ -768,19 +796,6 @@ partial class FrmPrincipal
         BtnCancelarCadastroMovimentacao.UseVisualStyleBackColor = true;
         BtnCancelarCadastroMovimentacao.Click += BtnCancelarCadastroMovimentacao_Click;
         // 
-        // LblErroCadastrarMovimentacao
-        // 
-        LblErroCadastrarMovimentacao.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        LblErroCadastrarMovimentacao.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        LblErroCadastrarMovimentacao.ForeColor = Color.Red;
-        LblErroCadastrarMovimentacao.Location = new Point(357, 243);
-        LblErroCadastrarMovimentacao.Name = "LblErroCadastrarMovimentacao";
-        LblErroCadastrarMovimentacao.Size = new Size(271, 20);
-        LblErroCadastrarMovimentacao.TabIndex = 17;
-        LblErroCadastrarMovimentacao.Text = "Verifique os dados e tente novamente.";
-        LblErroCadastrarMovimentacao.TextAlign = ContentAlignment.MiddleCenter;
-        LblErroCadastrarMovimentacao.Visible = false;
-        // 
         // BtnCadastrarMovimentacao
         // 
         BtnCadastrarMovimentacao.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
@@ -790,20 +805,23 @@ partial class FrmPrincipal
         BtnCadastrarMovimentacao.TabIndex = 15;
         BtnCadastrarMovimentacao.Text = "Cadastrar";
         BtnCadastrarMovimentacao.UseVisualStyleBackColor = true;
+        BtnCadastrarMovimentacao.Click += BtnCadastrarMovimentacao_Click;
         // 
         // TxtObservacaoMovimentacao
         // 
         TxtObservacaoMovimentacao.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        TxtObservacaoMovimentacao.Location = new Point(357, 214);
+        TxtObservacaoMovimentacao.Location = new Point(357, 283);
+        TxtObservacaoMovimentacao.Multiline = true;
         TxtObservacaoMovimentacao.Name = "TxtObservacaoMovimentacao";
-        TxtObservacaoMovimentacao.Size = new Size(271, 27);
+        TxtObservacaoMovimentacao.ScrollBars = ScrollBars.Vertical;
+        TxtObservacaoMovimentacao.Size = new Size(271, 155);
         TxtObservacaoMovimentacao.TabIndex = 5;
         // 
         // label18
         // 
         label18.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         label18.AutoSize = true;
-        label18.Location = new Point(357, 191);
+        label18.Location = new Point(357, 260);
         label18.Name = "label18";
         label18.Size = new Size(87, 20);
         label18.TabIndex = 4;
@@ -818,6 +836,7 @@ partial class FrmPrincipal
         NudQuantidade.Name = "NudQuantidade";
         NudQuantidade.Size = new Size(271, 27);
         NudQuantidade.TabIndex = 3;
+        NudQuantidade.TextAlign = HorizontalAlignment.Right;
         NudQuantidade.Value = new decimal(new int[] { 1, 0, 0, 0 });
         // 
         // label17
@@ -833,6 +852,7 @@ partial class FrmPrincipal
         // CbTipoMovimentacao
         // 
         CbTipoMovimentacao.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        CbTipoMovimentacao.DropDownStyle = ComboBoxStyle.DropDownList;
         CbTipoMovimentacao.FormattingEnabled = true;
         CbTipoMovimentacao.Location = new Point(357, 64);
         CbTipoMovimentacao.Name = "CbTipoMovimentacao";
@@ -948,9 +968,10 @@ partial class FrmPrincipal
     private TextBox TxtObservacaoMovimentacao;
     private Label label18;
     private Button BtnCadastrarMovimentacao;
-    private Label LblErroCadastrarMovimentacao;
     private Button BtnCancelarCadastroFornecedor;
     private Button BtnCancelarCadastroCategoria;
     private Button BtnCancelarCadastroProduto;
     private Button BtnCancelarCadastroMovimentacao;
+    private ComboBox CbProdutoMovimentacao;
+    private Label label6;
 }

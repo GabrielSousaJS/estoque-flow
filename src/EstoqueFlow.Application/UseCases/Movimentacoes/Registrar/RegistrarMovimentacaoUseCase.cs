@@ -18,7 +18,7 @@ public class RegistrarMovimentacaoUseCase(
         await AtualizarQuantidadeProduto(entidade);
         var movimentacao = await movimentacaoRepository.Adicionar(entidade);
 
-        return movimentacao.ToDto();
+        return movimentacao.ToNovaMovimentacao();
     }
 
     private async Task AtualizarQuantidadeProduto(Movimentacao movimentacao)
@@ -29,7 +29,7 @@ public class RegistrarMovimentacaoUseCase(
         if (movimentacao.Tipo == TipoMovimentacao.ENTRADA)
         {
             produto.Quantidade += movimentacao.Quantidade;
-            await produtoRepository.Atualizar(produto);
+            await produtoRepository.AtualizarQuantidade(produto);
 
             return;
         }
@@ -38,6 +38,6 @@ public class RegistrarMovimentacaoUseCase(
             throw new Exception("Quantidade insuficiente em estoque");
 
         produto.Quantidade -= movimentacao.Quantidade;
-        await produtoRepository.Atualizar(produto);
+        await produtoRepository.AtualizarQuantidade(produto);
     }
 }

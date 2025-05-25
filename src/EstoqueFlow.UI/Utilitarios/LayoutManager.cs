@@ -5,6 +5,19 @@ namespace EstoqueFlow.UI.Utilitarios;
 public static class LayoutManager
 {
     private static Dictionary<TabControl, List<TabPage>> guiasRemovidas = new Dictionary<TabControl, List<TabPage>>();
+    private static List<object> TiposMovimentacao = new List<object>
+    {
+        new
+        {
+            Id = 1,
+            Descricao = "Entrada"
+        },
+        new
+        {
+            Id = 2,
+            Descricao = "Saída"
+        }
+    };
 
     public static async void RealizarClickVisual(Button button)
     {
@@ -127,6 +140,14 @@ public static class LayoutManager
         comboBox.DataSource = dados.ToList();
         comboBox.DisplayMember = displayName;
         comboBox.ValueMember = valueName;
+    }
+
+    public static void PreencherComboBoxTipoMovimentacao(this ComboBox comboBox)
+    {
+        comboBox.DataSource = TiposMovimentacao;
+        comboBox.DisplayMember = "Descricao";
+        comboBox.ValueMember = "Id";
+
     }
 
     public static void FormatarTextBoxNumeroDecimal(this TextBox textBox, object sender, EventArgs e, ref string valorAnteior)

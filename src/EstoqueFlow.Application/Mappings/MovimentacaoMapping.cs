@@ -18,6 +18,20 @@ public static class MovimentacaoMapping
         };
     }
 
+    public static MovimentacaoResponse ToNovaMovimentacao(this Movimentacao from)
+    {
+        return new MovimentacaoResponse
+        {
+            Id = from.Id,
+            Data = from.Data,
+            Tipo = (int)from.Tipo,
+            Quantidade = from.Quantidade,
+            Observacao = from.Observacao,
+            UsuarioId = from.UsuarioId,
+            ProdutoId = from.ProdutoId,
+        };
+    }
+
     public static MovimentacaoResponse ToDto(this Movimentacao from)
     {
         var saoPauloTimeZone = TimeZoneInfo.FindSystemTimeZoneById("America/Sao_Paulo");
