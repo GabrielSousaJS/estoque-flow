@@ -125,6 +125,7 @@ public class MovimentacaoRepository : IMovimentacaoRepository
 	            m.produto_id = p.id
             INNER JOIN usuarios u ON
 	            m.usuario_id = u.id
+            ORDER BY m.id
        ";
 
         return await connection.QueryAsync<Movimentacao, Produto, Usuario, Movimentacao>(

@@ -120,6 +120,7 @@ public class UsuarioRepository : IUsuarioRepository
 	            data_cadastro AS DataCadastro
             FROM
 	            usuarios
+            ORDER BY id
         ";
 
         return await connection.QueryAsync<Usuario>(sql);

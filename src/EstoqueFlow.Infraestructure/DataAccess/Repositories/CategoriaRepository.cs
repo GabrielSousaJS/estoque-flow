@@ -71,6 +71,7 @@ public class CategoriaRepository : ICategoriaRepository
                 nome AS Nome,
                 descricao AS Descricao 
             FROM categorias
+            ORDER BY id
         ";
 
         return await connection.QueryAsync<Categoria>(sql);

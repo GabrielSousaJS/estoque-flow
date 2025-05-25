@@ -7,6 +7,7 @@ using EstoqueFlow.Application.UseCases.Movimentacoes.ObterTodos;
 using EstoqueFlow.Application.UseCases.Movimentacoes.Registrar;
 using EstoqueFlow.Application.UseCases.Produtos.ObterTodos;
 using EstoqueFlow.Application.UseCases.Produtos.Registrar;
+using EstoqueFlow.Application.UseCases.Usuarios.Desativar;
 using EstoqueFlow.Application.UseCases.Usuarios.ObterTodos;
 using EstoqueFlow.Application.ViewModel.Categorias;
 using EstoqueFlow.Application.ViewModel.Fornecedores;
@@ -19,6 +20,10 @@ namespace EstoqueFlow.UI;
 public partial class FrmPrincipal : Form
 {
     private readonly ISessaoUsuarioService _sessaoUsuarioService;
+    private readonly IDesativarUsuarioUseCase _desativarUsuarioUseCase;
+    private UsuarioResponse usuarioAtual;
+
+    public event Action? AbrirFrmLogin;
 
     #region OBTER TODOS USE CASES
     private readonly IObterTodosFornecedoresUseCase _obterTodosFornecedoresUseCase;
@@ -35,7 +40,6 @@ public partial class FrmPrincipal : Form
     private readonly IRegistrarMovimentacaoUseCase _registrarMovimentacaoUseCase;
     #endregion
 
-    private UsuarioResponse usuarioAtual;
     private string _valorAnterior = string.Empty;
 
     public FrmPrincipal(
@@ -48,7 +52,8 @@ public partial class FrmPrincipal : Form
         IRegistrarFornecedorUseCase registrarFornecedorUseCase,
         IRegistrarCategoriaUseCase registrarCategoriaUseCase,
         IRegistrarProdutoUseCase registrarProdutoUseCase,
-        IRegistrarMovimentacaoUseCase registrarMovimentacaoUseCase
+        IRegistrarMovimentacaoUseCase registrarMovimentacaoUseCase,
+        IDesativarUsuarioUseCase desativarUsuarioUseCase
     )
     {
         _sessaoUsuarioService = sessaoUsuarioService;
@@ -61,6 +66,7 @@ public partial class FrmPrincipal : Form
         _registrarCategoriaUseCase = registrarCategoriaUseCase;
         _registrarProdutoUseCase = registrarProdutoUseCase;
         _registrarMovimentacaoUseCase = registrarMovimentacaoUseCase;
+        _desativarUsuarioUseCase = desativarUsuarioUseCase;
 
         InitializeComponent();
     }
@@ -339,10 +345,10 @@ public partial class FrmPrincipal : Form
 
             MessageBox.Show($"Movimentação registrada com sucesso!");
             LayoutManager.LimparCampos(TbCadastrarMovimentacao);
-            
+
             CarregarDadosMovimentacao();
             CarregarDadosProduto();
-            
+
             BtnCancelarCadastroMovimentacao_Click(sender, e);
         }
         catch (Exception ex)
@@ -353,5 +359,26 @@ public partial class FrmPrincipal : Form
     #endregion
 
     #region USUÁRIO
+    private async void BtnDesativarConta_Click(object sender, EventArgs e)
+    {
+        if (MessageBox.Show("Tem certeza que deseja desativar a sua conta?", "Desativar conta", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) != DialogResult.Yes)
+        {
+            return;
+        }
+
+        try
+        {
+            await _desativarUsuarioUseCase.Executar(usuarioAtual.Id);
+
+            _sessaoUsuarioService.LimparUsuarioAtual();
+            MessageBox.Show("Conta desativada com sucesso!", "Desativar conta");
+            
+            AbrirFrmLogin?.Invoke();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message, "Erro ao desativar conta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
     #endregion
 }

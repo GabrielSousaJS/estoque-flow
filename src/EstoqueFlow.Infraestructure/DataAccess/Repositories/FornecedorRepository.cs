@@ -146,6 +146,7 @@ public class FornecedorRepository : IFornecedorRepository
 	            email AS Email
             FROM
 	            fornecedores
+            ORDER BY id
         ";
 
         return await connection.QueryAsync<Fornecedor>(sql);

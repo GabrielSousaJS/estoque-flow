@@ -169,6 +169,7 @@ public class ProdutoRepository : IProdutoRepository
             FROM produtos p
             INNER JOIN categorias c ON p.categoria_id = c.id
             INNER JOIN fornecedores f ON p.fornecedor_id = f.id
+            ORDER BY p.id
         ";
 
         return await connection.QueryAsync<Produto, Categoria, Fornecedor, Produto>(

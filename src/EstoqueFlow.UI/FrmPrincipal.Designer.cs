@@ -179,6 +179,7 @@ partial class FrmPrincipal
         DgvFornecedores.Name = "DgvFornecedores";
         DgvFornecedores.ReadOnly = true;
         DgvFornecedores.RowHeadersWidth = 51;
+        DgvFornecedores.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         DgvFornecedores.Size = new Size(973, 459);
         DgvFornecedores.TabIndex = 0;
         // 
@@ -220,6 +221,7 @@ partial class FrmPrincipal
         DgvCategorias.Name = "DgvCategorias";
         DgvCategorias.ReadOnly = true;
         DgvCategorias.RowHeadersWidth = 51;
+        DgvCategorias.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         DgvCategorias.Size = new Size(973, 459);
         DgvCategorias.TabIndex = 1;
         // 
@@ -261,6 +263,7 @@ partial class FrmPrincipal
         DgvProdutos.Name = "DgvProdutos";
         DgvProdutos.ReadOnly = true;
         DgvProdutos.RowHeadersWidth = 51;
+        DgvProdutos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         DgvProdutos.Size = new Size(973, 459);
         DgvProdutos.TabIndex = 2;
         // 
@@ -302,6 +305,7 @@ partial class FrmPrincipal
         DgvMovimentacoes.Name = "DgvMovimentacoes";
         DgvMovimentacoes.ReadOnly = true;
         DgvMovimentacoes.RowHeadersWidth = 51;
+        DgvMovimentacoes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         DgvMovimentacoes.Size = new Size(973, 459);
         DgvMovimentacoes.TabIndex = 3;
         // 
@@ -337,6 +341,7 @@ partial class FrmPrincipal
         BtnDesativarConta.TabIndex = 5;
         BtnDesativarConta.Text = "Desativar conta";
         BtnDesativarConta.UseVisualStyleBackColor = true;
+        BtnDesativarConta.Click += BtnDesativarConta_Click;
         // 
         // DgvUsuarios
         // 
@@ -353,6 +358,7 @@ partial class FrmPrincipal
         DgvUsuarios.Name = "DgvUsuarios";
         DgvUsuarios.ReadOnly = true;
         DgvUsuarios.RowHeadersWidth = 51;
+        DgvUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         DgvUsuarios.Size = new Size(973, 424);
         DgvUsuarios.TabIndex = 4;
         // 

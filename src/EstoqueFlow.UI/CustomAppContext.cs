@@ -42,6 +42,7 @@ public class CustomAppContext : ApplicationContext
     private void AbrirFrmPrincipal()
     {
         var frmPrincipal = _serviceProvider.GetRequiredService<FrmPrincipal>();
+        frmPrincipal.AbrirFrmLogin += AbrirFrmLogin;
         frmPrincipal.FormClosed += (s, e) => ExitThread();
 
         MainForm.Hide();
