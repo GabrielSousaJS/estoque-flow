@@ -4,5 +4,5 @@ namespace EstoqueFlow.Application.UseCases.Usuarios.Atualizar;
 
 public interface IAtualizarUsuarioUseCase
 {
-    Task Executar(int id, AtualizarUsuarioRequest request);
+    Task Executar(AtualizarUsuarioRequest request);
 }

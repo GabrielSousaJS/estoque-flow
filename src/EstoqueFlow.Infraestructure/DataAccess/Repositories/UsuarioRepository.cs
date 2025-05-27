@@ -44,8 +44,7 @@ public class UsuarioRepository : IUsuarioRepository
 	            usuarios
             SET
 	            nome = @Nome,
-	            email = @Email,
-	            senha = @Senha
+	            email = @Email
             WHERE
 	            id = @Id
         ";
@@ -54,6 +53,25 @@ public class UsuarioRepository : IUsuarioRepository
         {
             usuario.Nome,
             usuario.Email,
+            usuario.Id
+        });
+    }
+
+    public async Task AtualizarSenha(Usuario usuario)
+    {
+        using var connection = DbConnectionFactory.GetConnection();
+
+        string sql = @"
+            UPDATE
+	            usuarios
+            SET
+	            senha = @Senha
+            WHERE
+	            id = @Id
+        ";
+
+        await connection.ExecuteAsync(sql, new
+        {
             usuario.Senha,
             usuario.Id
         });
@@ -86,7 +104,7 @@ public class UsuarioRepository : IUsuarioRepository
         return total > 0;
     }
 
-    public async Task<Usuario> ObterPorId(int id)
+    public async Task<Usuario?> ObterPorId(int id)
     {
         using var connection = DbConnectionFactory.GetConnection();
 
@@ -95,6 +113,7 @@ public class UsuarioRepository : IUsuarioRepository
 	            id AS Id,
 	            nome AS Nome,
 	            email AS Email,
+                senha AS Senha,
 	            ativo AS Ativo,
 	            data_cadastro AS DataCadastro
             FROM
@@ -104,7 +123,7 @@ public class UsuarioRepository : IUsuarioRepository
 	            AND ativo = TRUE
         ";
 
-        return await connection.QuerySingleAsync<Usuario>(sql, new { Id = id });
+        return await connection.QueryFirstOrDefaultAsync<Usuario>(sql, new { Id = id });
     }
 
     public async Task<IEnumerable<Usuario>> ObterTodos()

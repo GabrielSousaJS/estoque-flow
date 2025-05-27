@@ -9,10 +9,16 @@ public class Usuario
     public bool Ativo { get; set; } = true;
     public DateTime DataCadastro { get; set; }
 
-    public Usuario AtualizarDados(string nome, string email, string senha)
+    public Usuario AtualizarDados(string nome, string email)
     {
         Nome = nome;
         Email = email;
+
+        return this;
+    }
+
+    public Usuario AtualizarSenha(string senha)
+    {
         Senha = senha;
 
         return this;

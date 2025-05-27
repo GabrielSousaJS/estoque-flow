@@ -95,6 +95,20 @@ partial class FrmPrincipal
         label17 = new Label();
         CbTipoMovimentacao = new ComboBox();
         label16 = new Label();
+        TbAtualizarUsuario = new TabPage();
+        BtnAtualizarUsuario = new Button();
+        BtnCancelarAtualizacaoUsuario = new Button();
+        TxtNovaSenha = new TextBox();
+        TxtSenhaAtual = new TextBox();
+        TxtEmailUsuario = new TextBox();
+        TxtNomeUsuario = new TextBox();
+        TxtIdUsuario = new TextBox();
+        label23 = new Label();
+        label22 = new Label();
+        label21 = new Label();
+        label20 = new Label();
+        label19 = new Label();
+        BtnSair = new Button();
         TabPrincipal.SuspendLayout();
         TbFornecedores.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)DgvFornecedores).BeginInit();
@@ -112,6 +126,7 @@ partial class FrmPrincipal
         ((System.ComponentModel.ISupportInitialize)NudEstoqueMinimo).BeginInit();
         TbCadastrarMovimentacao.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)NudQuantidade).BeginInit();
+        TbAtualizarUsuario.SuspendLayout();
         SuspendLayout();
         // 
         // LblUsuario
@@ -135,6 +150,7 @@ partial class FrmPrincipal
         TabPrincipal.Controls.Add(TbCadastrarCategoria);
         TabPrincipal.Controls.Add(TbCadastrarProduto);
         TabPrincipal.Controls.Add(TbCadastrarMovimentacao);
+        TabPrincipal.Controls.Add(TbAtualizarUsuario);
         TabPrincipal.Location = new Point(3, 41);
         TabPrincipal.Name = "TabPrincipal";
         TabPrincipal.SelectedIndex = 0;
@@ -331,6 +347,7 @@ partial class FrmPrincipal
         BtnAtualizarDados.TabIndex = 6;
         BtnAtualizarDados.Text = "Atualizar dados";
         BtnAtualizarDados.UseVisualStyleBackColor = true;
+        BtnAtualizarDados.Click += BtnAtualizarDados_Click;
         // 
         // BtnDesativarConta
         // 
@@ -776,16 +793,16 @@ partial class FrmPrincipal
         CbProdutoMovimentacao.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         CbProdutoMovimentacao.DropDownStyle = ComboBoxStyle.DropDownList;
         CbProdutoMovimentacao.FormattingEnabled = true;
-        CbProdutoMovimentacao.Location = new Point(357, 209);
+        CbProdutoMovimentacao.Location = new Point(304, 209);
         CbProdutoMovimentacao.Name = "CbProdutoMovimentacao";
-        CbProdutoMovimentacao.Size = new Size(271, 28);
+        CbProdutoMovimentacao.Size = new Size(376, 28);
         CbProdutoMovimentacao.TabIndex = 20;
         // 
         // label6
         // 
         label6.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         label6.AutoSize = true;
-        label6.Location = new Point(357, 186);
+        label6.Location = new Point(304, 186);
         label6.Name = "label6";
         label6.Size = new Size(62, 20);
         label6.TabIndex = 19;
@@ -816,18 +833,18 @@ partial class FrmPrincipal
         // TxtObservacaoMovimentacao
         // 
         TxtObservacaoMovimentacao.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        TxtObservacaoMovimentacao.Location = new Point(357, 283);
+        TxtObservacaoMovimentacao.Location = new Point(304, 283);
         TxtObservacaoMovimentacao.Multiline = true;
         TxtObservacaoMovimentacao.Name = "TxtObservacaoMovimentacao";
         TxtObservacaoMovimentacao.ScrollBars = ScrollBars.Vertical;
-        TxtObservacaoMovimentacao.Size = new Size(271, 155);
+        TxtObservacaoMovimentacao.Size = new Size(376, 155);
         TxtObservacaoMovimentacao.TabIndex = 5;
         // 
         // label18
         // 
         label18.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         label18.AutoSize = true;
-        label18.Location = new Point(357, 260);
+        label18.Location = new Point(304, 260);
         label18.Name = "label18";
         label18.Size = new Size(87, 20);
         label18.TabIndex = 4;
@@ -836,11 +853,11 @@ partial class FrmPrincipal
         // NudQuantidade
         // 
         NudQuantidade.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        NudQuantidade.Location = new Point(357, 139);
+        NudQuantidade.Location = new Point(304, 139);
         NudQuantidade.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
         NudQuantidade.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
         NudQuantidade.Name = "NudQuantidade";
-        NudQuantidade.Size = new Size(271, 27);
+        NudQuantidade.Size = new Size(376, 27);
         NudQuantidade.TabIndex = 3;
         NudQuantidade.TextAlign = HorizontalAlignment.Right;
         NudQuantidade.Value = new decimal(new int[] { 1, 0, 0, 0 });
@@ -849,7 +866,7 @@ partial class FrmPrincipal
         // 
         label17.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         label17.AutoSize = true;
-        label17.Location = new Point(357, 116);
+        label17.Location = new Point(304, 116);
         label17.Name = "label17";
         label17.Size = new Size(87, 20);
         label17.TabIndex = 2;
@@ -860,26 +877,176 @@ partial class FrmPrincipal
         CbTipoMovimentacao.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         CbTipoMovimentacao.DropDownStyle = ComboBoxStyle.DropDownList;
         CbTipoMovimentacao.FormattingEnabled = true;
-        CbTipoMovimentacao.Location = new Point(357, 64);
+        CbTipoMovimentacao.Location = new Point(304, 64);
         CbTipoMovimentacao.Name = "CbTipoMovimentacao";
-        CbTipoMovimentacao.Size = new Size(271, 28);
+        CbTipoMovimentacao.Size = new Size(376, 28);
         CbTipoMovimentacao.TabIndex = 1;
         // 
         // label16
         // 
         label16.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         label16.AutoSize = true;
-        label16.Location = new Point(357, 41);
+        label16.Location = new Point(304, 41);
         label16.Name = "label16";
         label16.Size = new Size(163, 20);
         label16.TabIndex = 0;
         label16.Text = "Tipo de Movimentação";
+        // 
+        // TbAtualizarUsuario
+        // 
+        TbAtualizarUsuario.Controls.Add(BtnAtualizarUsuario);
+        TbAtualizarUsuario.Controls.Add(BtnCancelarAtualizacaoUsuario);
+        TbAtualizarUsuario.Controls.Add(TxtNovaSenha);
+        TbAtualizarUsuario.Controls.Add(TxtSenhaAtual);
+        TbAtualizarUsuario.Controls.Add(TxtEmailUsuario);
+        TbAtualizarUsuario.Controls.Add(TxtNomeUsuario);
+        TbAtualizarUsuario.Controls.Add(TxtIdUsuario);
+        TbAtualizarUsuario.Controls.Add(label23);
+        TbAtualizarUsuario.Controls.Add(label22);
+        TbAtualizarUsuario.Controls.Add(label21);
+        TbAtualizarUsuario.Controls.Add(label20);
+        TbAtualizarUsuario.Controls.Add(label19);
+        TbAtualizarUsuario.Location = new Point(4, 29);
+        TbAtualizarUsuario.Name = "TbAtualizarUsuario";
+        TbAtualizarUsuario.Padding = new Padding(3);
+        TbAtualizarUsuario.Size = new Size(985, 506);
+        TbAtualizarUsuario.TabIndex = 9;
+        TbAtualizarUsuario.Text = "Atualizar dados usuário";
+        TbAtualizarUsuario.UseVisualStyleBackColor = true;
+        // 
+        // BtnAtualizarUsuario
+        // 
+        BtnAtualizarUsuario.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+        BtnAtualizarUsuario.Location = new Point(839, 471);
+        BtnAtualizarUsuario.Name = "BtnAtualizarUsuario";
+        BtnAtualizarUsuario.Size = new Size(139, 29);
+        BtnAtualizarUsuario.TabIndex = 20;
+        BtnAtualizarUsuario.Text = "Salvar";
+        BtnAtualizarUsuario.UseVisualStyleBackColor = true;
+        BtnAtualizarUsuario.Click += BtnAtualizarUsuario_Click;
+        // 
+        // BtnCancelarAtualizacaoUsuario
+        // 
+        BtnCancelarAtualizacaoUsuario.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+        BtnCancelarAtualizacaoUsuario.Location = new Point(3, 471);
+        BtnCancelarAtualizacaoUsuario.Name = "BtnCancelarAtualizacaoUsuario";
+        BtnCancelarAtualizacaoUsuario.Size = new Size(139, 29);
+        BtnCancelarAtualizacaoUsuario.TabIndex = 19;
+        BtnCancelarAtualizacaoUsuario.Text = "Cancelar";
+        BtnCancelarAtualizacaoUsuario.UseVisualStyleBackColor = true;
+        BtnCancelarAtualizacaoUsuario.Click += BtnCancelarAtualizacaoUsuario_Click;
+        // 
+        // TxtNovaSenha
+        // 
+        TxtNovaSenha.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        TxtNovaSenha.Location = new Point(304, 338);
+        TxtNovaSenha.Name = "TxtNovaSenha";
+        TxtNovaSenha.Size = new Size(376, 27);
+        TxtNovaSenha.TabIndex = 9;
+        TxtNovaSenha.UseSystemPasswordChar = true;
+        // 
+        // TxtSenhaAtual
+        // 
+        TxtSenhaAtual.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        TxtSenhaAtual.Location = new Point(304, 272);
+        TxtSenhaAtual.Name = "TxtSenhaAtual";
+        TxtSenhaAtual.Size = new Size(376, 27);
+        TxtSenhaAtual.TabIndex = 8;
+        TxtSenhaAtual.UseSystemPasswordChar = true;
+        // 
+        // TxtEmailUsuario
+        // 
+        TxtEmailUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        TxtEmailUsuario.CharacterCasing = CharacterCasing.Lower;
+        TxtEmailUsuario.Location = new Point(304, 202);
+        TxtEmailUsuario.Name = "TxtEmailUsuario";
+        TxtEmailUsuario.Size = new Size(376, 27);
+        TxtEmailUsuario.TabIndex = 7;
+        // 
+        // TxtNomeUsuario
+        // 
+        TxtNomeUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        TxtNomeUsuario.Location = new Point(304, 134);
+        TxtNomeUsuario.Name = "TxtNomeUsuario";
+        TxtNomeUsuario.Size = new Size(376, 27);
+        TxtNomeUsuario.TabIndex = 6;
+        // 
+        // TxtIdUsuario
+        // 
+        TxtIdUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        TxtIdUsuario.Location = new Point(304, 64);
+        TxtIdUsuario.Name = "TxtIdUsuario";
+        TxtIdUsuario.ReadOnly = true;
+        TxtIdUsuario.Size = new Size(376, 27);
+        TxtIdUsuario.TabIndex = 5;
+        // 
+        // label23
+        // 
+        label23.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        label23.AutoSize = true;
+        label23.Location = new Point(304, 315);
+        label23.Name = "label23";
+        label23.Size = new Size(88, 20);
+        label23.TabIndex = 4;
+        label23.Text = "Nova Senha";
+        // 
+        // label22
+        // 
+        label22.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        label22.AutoSize = true;
+        label22.Location = new Point(304, 249);
+        label22.Name = "label22";
+        label22.Size = new Size(88, 20);
+        label22.TabIndex = 3;
+        label22.Text = "Senha Atual";
+        // 
+        // label21
+        // 
+        label21.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        label21.AutoSize = true;
+        label21.Location = new Point(304, 179);
+        label21.Name = "label21";
+        label21.Size = new Size(52, 20);
+        label21.TabIndex = 2;
+        label21.Text = "E-mail";
+        // 
+        // label20
+        // 
+        label20.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        label20.AutoSize = true;
+        label20.Location = new Point(304, 111);
+        label20.Name = "label20";
+        label20.Size = new Size(50, 20);
+        label20.TabIndex = 1;
+        label20.Text = "Nome";
+        // 
+        // label19
+        // 
+        label19.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        label19.AutoSize = true;
+        label19.Location = new Point(304, 41);
+        label19.Name = "label19";
+        label19.Size = new Size(78, 20);
+        label19.TabIndex = 0;
+        label19.Text = "ID Usuário";
+        // 
+        // BtnSair
+        // 
+        BtnSair.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+        BtnSair.Location = new Point(923, 6);
+        BtnSair.Name = "BtnSair";
+        BtnSair.Size = new Size(69, 29);
+        BtnSair.TabIndex = 2;
+        BtnSair.Text = "Sair";
+        BtnSair.UseVisualStyleBackColor = true;
+        BtnSair.Click += BtnSair_Click;
         // 
         // FrmPrincipal
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(997, 583);
+        Controls.Add(BtnSair);
         Controls.Add(TabPrincipal);
         Controls.Add(LblUsuario);
         Icon = (Icon)resources.GetObject("$this.Icon");
@@ -909,6 +1076,8 @@ partial class FrmPrincipal
         TbCadastrarMovimentacao.ResumeLayout(false);
         TbCadastrarMovimentacao.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)NudQuantidade).EndInit();
+        TbAtualizarUsuario.ResumeLayout(false);
+        TbAtualizarUsuario.PerformLayout();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -980,4 +1149,18 @@ partial class FrmPrincipal
     private Button BtnCancelarCadastroMovimentacao;
     private ComboBox CbProdutoMovimentacao;
     private Label label6;
+    private Button BtnSair;
+    private TabPage TbAtualizarUsuario;
+    private Label label23;
+    private Label label22;
+    private Label label21;
+    private Label label20;
+    private Label label19;
+    private TextBox TxtIdUsuario;
+    private Button BtnAtualizarUsuario;
+    private Button BtnCancelarAtualizacaoUsuario;
+    private TextBox TxtNovaSenha;
+    private TextBox TxtSenhaAtual;
+    private TextBox TxtEmailUsuario;
+    private TextBox TxtNomeUsuario;
 }

@@ -7,6 +7,7 @@ using EstoqueFlow.Application.UseCases.Movimentacoes.ObterTodos;
 using EstoqueFlow.Application.UseCases.Movimentacoes.Registrar;
 using EstoqueFlow.Application.UseCases.Produtos.ObterTodos;
 using EstoqueFlow.Application.UseCases.Produtos.Registrar;
+using EstoqueFlow.Application.UseCases.Usuarios.Atualizar;
 using EstoqueFlow.Application.UseCases.Usuarios.Desativar;
 using EstoqueFlow.Application.UseCases.Usuarios.ObterTodos;
 using EstoqueFlow.Application.ViewModel.Categorias;
@@ -40,6 +41,10 @@ public partial class FrmPrincipal : Form
     private readonly IRegistrarMovimentacaoUseCase _registrarMovimentacaoUseCase;
     #endregion
 
+    #region USE CASES PARA ATUALIZAR
+    private readonly IAtualizarUsuarioUseCase _atualizarUsuarioUseCase;
+    #endregion
+
     private string _valorAnterior = string.Empty;
 
     public FrmPrincipal(
@@ -53,7 +58,9 @@ public partial class FrmPrincipal : Form
         IRegistrarCategoriaUseCase registrarCategoriaUseCase,
         IRegistrarProdutoUseCase registrarProdutoUseCase,
         IRegistrarMovimentacaoUseCase registrarMovimentacaoUseCase,
-        IDesativarUsuarioUseCase desativarUsuarioUseCase
+        IDesativarUsuarioUseCase desativarUsuarioUseCase,
+        IAtualizarUsuarioUseCase atualizarUsuarioUseCase
+
     )
     {
         _sessaoUsuarioService = sessaoUsuarioService;
@@ -67,6 +74,7 @@ public partial class FrmPrincipal : Form
         _registrarProdutoUseCase = registrarProdutoUseCase;
         _registrarMovimentacaoUseCase = registrarMovimentacaoUseCase;
         _desativarUsuarioUseCase = desativarUsuarioUseCase;
+        _atualizarUsuarioUseCase = atualizarUsuarioUseCase;
 
         InitializeComponent();
     }
@@ -90,6 +98,7 @@ public partial class FrmPrincipal : Form
         TabPrincipal.TabPages.Remove(TbCadastrarCategoria);
         TabPrincipal.TabPages.Remove(TbCadastrarProduto);
         TabPrincipal.TabPages.Remove(TbCadastrarMovimentacao);
+        TabPrincipal.TabPages.Remove(TbAtualizarUsuario);
     }
 
     #region CARREGAMENTO DE DADOS DO GRIDVIEW
@@ -372,7 +381,7 @@ public partial class FrmPrincipal : Form
 
             _sessaoUsuarioService.LimparUsuarioAtual();
             MessageBox.Show("Conta desativada com sucesso!", "Desativar conta");
-            
+
             AbrirFrmLogin?.Invoke();
         }
         catch (Exception ex)
@@ -380,5 +389,77 @@ public partial class FrmPrincipal : Form
             MessageBox.Show(ex.Message, "Erro ao desativar conta", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
+
+    private void BtnSair_Click(object sender, EventArgs e)
+    {
+        if (MessageBox.Show("Tem certeza que deseja sair da conta?", "Sair", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) != DialogResult.Yes)
+        {
+            return;
+        }
+
+        _sessaoUsuarioService.LimparUsuarioAtual();
+
+        AbrirFrmLogin?.Invoke();
+    }
+
+    #region ATUALIZAR USUÁRIO
+    private void BtnAtualizarDados_Click(object sender, EventArgs e)
+    {
+        LayoutManager.MostraApenasUmaGuia(TabPrincipal, TbAtualizarUsuario);
+
+        CarregarDadosUsuarioAtual();
+    }
+
+    private void CarregarDadosUsuarioAtual()
+    {
+        if (usuarioAtual != null)
+        {
+            TxtIdUsuario.Text = usuarioAtual.Id.ToString();
+            TxtNomeUsuario.Text = usuarioAtual.Nome;
+            TxtEmailUsuario.Text = usuarioAtual.Email;
+        }
+        else
+        {
+            MessageBox.Show("Usuário não definido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
+    private void BtnCancelarAtualizacaoUsuario_Click(object sender, EventArgs e)
+    {
+        CarregarDadosUsuario();
+        LayoutManager.LimparCampos(TbAtualizarUsuario);
+        LayoutManager.RestaurarGuiasRemovidas(TabPrincipal, TbAtualizarUsuario, TbUsuarios);
+    }
+    
+    private async void BtnAtualizarUsuario_Click(object sender, EventArgs e)
+    {
+        if (!Validators.VerificarNome(TxtNomeUsuario.Text) ||
+            !Validators.VerificarEmail(TxtEmailUsuario.Text))
+        {
+            MessageBox.Show("Verifique os dados e tente novamente.", "Erro de preenchimento", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+        }
+
+        var request = new AtualizarUsuarioRequest(usuarioAtual.Id, TxtNomeUsuario.Text, TxtEmailUsuario.Text, TxtSenhaAtual.Text, TxtNovaSenha.Text);
+
+        try
+        {
+            await _atualizarUsuarioUseCase.Executar(request);
+
+            MessageBox.Show("Usuário atualizado com sucesso! \n Deverá ser realizado o login novamente!", "Atualização de usuário", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
+            LayoutManager.LimparCampos(TbAtualizarUsuario);
+
+            _sessaoUsuarioService.LimparUsuarioAtual();
+            AbrirFrmLogin?.Invoke();
+        }
+        catch(Exception ex)
+        {
+            MessageBox.Show(ex.Message, "Erro ao atualizar usuário", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            TxtNomeUsuario.Focus();
+        }
+    }
     #endregion
+    #endregion
+
 }
