@@ -473,18 +473,28 @@ public partial class FrmPrincipal : Form
         string valorCompra = TxtValorCompra.Text.Replace("R$ ", "").Replace(".", "").Trim();
         string valorVenda = TxtValorVenda.Text.Replace("R$ ", "").Replace(".", "").Trim();
 
-        var request = new ProdutosRequest(
-            nome: TxtNomeProduto.Text,
-            descricao: TxtDescricaoProduto.Text,
-            precoCompra: decimal.Parse(valorCompra),
-            precoVenda: decimal.Parse(valorVenda),
-            estoqueMinimo: (int)NudEstoqueMinimo.Value,
-            categoriaId: (int)CbCategoria.SelectedValue,
-            fornecedorId: (int)CbFornecedor.SelectedValue
-        );
-
         try
         {
+            decimal precoCompra = decimal.Parse(valorCompra);
+            decimal precoVenda = decimal.Parse(valorVenda);
+
+            if (precoCompra <= 0 || precoVenda <= 0)
+            {
+                MessageBox.Show("Os valores de compra e venda devem ser maiores do que zero.", "Erro de preenchimento", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            var request = new ProdutosRequest(
+                nome: TxtNomeProduto.Text,
+                descricao: TxtDescricaoProduto.Text,
+                precoCompra: precoCompra,
+                precoVenda: precoVenda,
+                estoqueMinimo: (int)NudEstoqueMinimo.Value,
+                categoriaId: (int)CbCategoria.SelectedValue,
+                fornecedorId: (int)CbFornecedor.SelectedValue
+            );
+
+
             var resposta = await _registrarProdutoUseCase.Executar(request);
 
             MessageBox.Show($"Produto {resposta.Nome} cadastrado com sucesso!");
@@ -585,18 +595,27 @@ public partial class FrmPrincipal : Form
         string valorCompra = TxtValorCompraAtualizar.Text.Replace("R$ ", "").Replace(".", "").Trim();
         string valorVenda = TxtValorVendaAtualizar.Text.Replace("R$ ", "").Replace(".", "").Trim();
 
-        var request = new ProdutosRequest(
-            nome: TxtNomeProdutoAtualizar.Text,
-            descricao: TxtDescricaoProdutoAtualizar.Text,
-            precoCompra: decimal.Parse(valorCompra),
-            precoVenda: decimal.Parse(valorVenda),
-            estoqueMinimo: (int)NudEstoqueMinimoAtualizar.Value,
-            categoriaId: (int)CbCategoriaAtualizar.SelectedValue,
-            fornecedorId: (int)CbFornecedorAtualizar.SelectedValue
-        );
-
         try
         {
+            decimal precoCompra = decimal.Parse(valorCompra);
+            decimal precoVenda = decimal.Parse(valorVenda);
+
+            if (precoCompra <= 0 || precoVenda <= 0)
+            {
+                MessageBox.Show("Os valores de compra e venda devem ser maiores do que zero.", "Erro de preenchimento", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            var request = new ProdutosRequest(
+                nome: TxtNomeProdutoAtualizar.Text,
+                descricao: TxtDescricaoProdutoAtualizar.Text,
+                precoCompra: precoCompra,
+                precoVenda: precoVenda,
+                estoqueMinimo: (int)NudEstoqueMinimoAtualizar.Value,
+                categoriaId: (int)CbCategoriaAtualizar.SelectedValue,
+                fornecedorId: (int)CbFornecedorAtualizar.SelectedValue
+            );
+
             await _atualizarProdutoUseCase.Executar(int.Parse(TxtIdProduto.Text), request);
 
             MessageBox.Show($"Produto atualizado com sucesso!");
