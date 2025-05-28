@@ -24,7 +24,7 @@ public static class MovimentacaoMapping
         {
             Id = from.Id,
             Data = from.Data,
-            Tipo = (int)from.Tipo,
+            Tipo = from.Tipo == TipoMovimentacao.ENTRADA ? "Entrada" : "Saída",
             Quantidade = from.Quantidade,
             Observacao = from.Observacao,
             UsuarioId = from.UsuarioId,
@@ -40,7 +40,7 @@ public static class MovimentacaoMapping
         {
             Id = from.Id,
             Data = TimeZoneInfo.ConvertTimeFromUtc(from.Data, saoPauloTimeZone),
-            Tipo = (int)from.Tipo,
+            Tipo = from.Tipo == TipoMovimentacao.ENTRADA ? "Entrada" : "Saída",
             Quantidade = from.Quantidade,
             Observacao = from.Observacao,
             UsuarioId = from.UsuarioId,

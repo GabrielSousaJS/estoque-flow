@@ -4,7 +4,7 @@ using EstoqueFlow.Domain.Repositories;
 
 namespace EstoqueFlow.Application.UseCases.Fornecedores.Atualizar;
 
-public class AtualizarFornecedorUseCase(IFornecedorRepository fornecedorRepository) : IAtualizarFornecedorRepository
+public class AtualizarFornecedorUseCase(IFornecedorRepository fornecedorRepository) : IAtualizarFornecedorUseCase
 {
     public async Task Executar(int id, FornecedorRequest request)
     {

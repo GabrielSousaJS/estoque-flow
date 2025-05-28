@@ -2,7 +2,7 @@
 
 namespace EstoqueFlow.Application.UseCases.Fornecedores.Atualizar;
 
-public interface IAtualizarFornecedorRepository
+public interface IAtualizarFornecedorUseCase
 {
     Task Executar(int id, FornecedorRequest request);
 }

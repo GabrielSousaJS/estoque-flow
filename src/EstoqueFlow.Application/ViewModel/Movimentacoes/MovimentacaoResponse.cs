@@ -10,7 +10,7 @@ public class MovimentacaoResponse
     [DisplayName("Data")]
     public DateTime Data { get; set; }
     [DisplayName("Tipo da Movimentação")]
-    public int Tipo { get; set; }
+    public string Tipo { get; set; } = string.Empty;
     [DisplayName("Quantidade")]
     public int Quantidade { get; set; }
     [DisplayName("Observação")]

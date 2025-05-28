@@ -43,7 +43,7 @@ public static class DependencyInjection
         services.AddScoped<IRegistrarCategoriaUseCase, RegistrarCategoriaUseCase>();
 
         // Fornecedores
-        services.AddScoped<IAtualizarFornecedorRepository, AtualizarFornecedorUseCase>();
+        services.AddScoped<IAtualizarFornecedorUseCase, AtualizarFornecedorUseCase>();
         services.AddScoped<IObterFornecedorPorIdUseCase, ObterFornecedorPorIdUseCase>();
         services.AddScoped<IObterTodosFornecedoresUseCase, ObterTodosFornecedoresUseCase>();
         services.AddScoped<IRegistrarFornecedorUseCase, RegistrarFornecedorUseCase>();
