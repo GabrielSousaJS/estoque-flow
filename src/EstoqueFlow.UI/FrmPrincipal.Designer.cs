@@ -763,7 +763,7 @@ partial class FrmPrincipal
         // 
         // TxtValorVenda
         // 
-        TxtValorVenda.Location = new Point(399, 58);
+        TxtValorVenda.Location = new Point(28, 136);
         TxtValorVenda.Name = "TxtValorVenda";
         TxtValorVenda.Size = new Size(271, 27);
         TxtValorVenda.TabIndex = 10;
@@ -773,7 +773,7 @@ partial class FrmPrincipal
         // 
         // TxtValorCompra
         // 
-        TxtValorCompra.Location = new Point(28, 137);
+        TxtValorCompra.Location = new Point(399, 58);
         TxtValorCompra.Name = "TxtValorCompra";
         TxtValorCompra.Size = new Size(271, 27);
         TxtValorCompra.TabIndex = 9;
@@ -827,7 +827,7 @@ partial class FrmPrincipal
         // label12
         // 
         label12.AutoSize = true;
-        label12.Location = new Point(399, 35);
+        label12.Location = new Point(28, 113);
         label12.Name = "label12";
         label12.Size = new Size(109, 20);
         label12.TabIndex = 3;
@@ -836,7 +836,7 @@ partial class FrmPrincipal
         // label11
         // 
         label11.AutoSize = true;
-        label11.Location = new Point(28, 114);
+        label11.Location = new Point(399, 35);
         label11.Name = "label11";
         label11.Size = new Size(121, 20);
         label11.TabIndex = 2;

@@ -199,11 +199,16 @@ public partial class FrmPrincipal : Form
     {
         if (string.IsNullOrWhiteSpace(TxtRazaoSocial.Text) ||
             string.IsNullOrWhiteSpace(TxtNomeFantasia.Text) ||
-            !Validators.ValidarCnpj(TxtCnpj.Text) ||
             !Validators.ValidarTelefoneFixo(TxtTelefoneFixo.Text) ||
             !Validators.VerificarEmail(TxtEmailFornecedor.Text))
         {
             MessageBox.Show("Verifique os dados e tente novamente", "Erro de preenchimento", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+        }
+
+        if (!Validators.ValidarCnpj(TxtCnpj.Text))
+        {
+            MessageBox.Show("O CNPJ é inválido, verifique e tente novamente", "CNPJ incorreto", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
@@ -273,11 +278,16 @@ public partial class FrmPrincipal : Form
     {
         if (string.IsNullOrWhiteSpace(TxtRazaoSocialAtualizar.Text) ||
             string.IsNullOrWhiteSpace(TxtNomeFantasiaAtualizar.Text) ||
-            !Validators.ValidarCnpj(TxtCnpjAtualizar.Text) ||
             !Validators.ValidarTelefoneFixo(TxtTelefoneFixoAtualizar.Text) ||
             !Validators.VerificarEmail(TxtEmailFornecedorAtualizar.Text))
         {
             MessageBox.Show("Verifique os dados e tente novamente", "Erro de preenchimento", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+        }
+
+        if (!Validators.ValidarCnpj(TxtCnpjAtualizar.Text))
+        {
+            MessageBox.Show("O CNPJ é inválido, verifique e tente novamente", "CNPJ incorreto", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
@@ -637,6 +647,12 @@ public partial class FrmPrincipal : Form
     #region MOVIMENTAÇÃO
     private async void BtnAdicionarMovimentacao_Click(object sender, EventArgs e)
     {
+        if(DgvProdutos.Rows.Count <= 0)
+        {
+            MessageBox.Show("Cadastre pelo menos um produto antes de registrar uma movimentação.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+        }
+
         CbTipoMovimentacao.PreencherComboBoxTipoMovimentacao();
 
         var produtos = await _obterTodosProdutosUseCase.Executar();

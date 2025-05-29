@@ -37,7 +37,7 @@ public static class Validators
 
         if (!resultado)
         {
-            throw new ArgumentException("CNPJ inválido");
+            return false;
         }
 
         return true;

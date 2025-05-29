@@ -17,7 +17,10 @@ public class RegistrarUsuarioUseCase(
         var entidade = request.ToEntidade();
         entidade.Senha = criptografarSenha.Criptografar(request.Senha);
 
-        var usuario = await usuarioRepository.Adicionar(entidade);
+        var resposta = await usuarioRepository.Adicionar(entidade);
+
+        var usuario = await usuarioRepository.ObterUsuarioPorEmail(resposta.Email) ??
+            throw new InvalidOperationException("Erro ao cadastrar usuário.");
 
         return usuario.ToDto();
     }
