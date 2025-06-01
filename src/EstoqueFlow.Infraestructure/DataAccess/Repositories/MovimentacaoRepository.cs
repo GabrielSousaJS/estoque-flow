@@ -15,6 +15,8 @@ public class MovimentacaoRepository : IMovimentacaoRepository
 	            INTO
 	            movimentacoes (
 		            tipo,
+                    preco_compra,
+                    preco_venda,
 		            quantidade,
 		            observacao,
 		            produto_id,
@@ -22,6 +24,8 @@ public class MovimentacaoRepository : IMovimentacaoRepository
 	            )
             VALUES (
 	            @Tipo,
+                @PrecoCompra,
+                @PrecoVenda,
 	            @Quantidade,
 	            @Observacao,
 	            @ProdutoId,
@@ -32,6 +36,8 @@ public class MovimentacaoRepository : IMovimentacaoRepository
         await connection.ExecuteAsync(sql, new
         {
             movimentacao.Tipo,
+            movimentacao.PrecoCompra,
+            movimentacao.PrecoVenda,
             movimentacao.Quantidade,
             movimentacao.Observacao,
             movimentacao.ProdutoId,
@@ -49,6 +55,8 @@ public class MovimentacaoRepository : IMovimentacaoRepository
            SELECT
 	            m.id AS Id,
 	            m.tipo AS Tipo,
+                m.preco_compra AS PrecoCompra,
+                m.preco_venda AS PrecoVenda,
 	            m.quantidade AS Quantidade,
 	            m.observacao AS Observacao,
 	            m.produto_id AS ProdutoId,
@@ -101,6 +109,8 @@ public class MovimentacaoRepository : IMovimentacaoRepository
 	            m.id AS Id,
                 m.data AS Data,
 	            m.tipo AS Tipo,
+                m.preco_compra AS PrecoCompra,
+                m.preco_venda AS PrecoVenda,
 	            m.quantidade AS Quantidade,
 	            m.observacao AS Observacao,
 	            m.produto_id AS ProdutoId,

@@ -41,6 +41,8 @@ public static class MovimentacaoMapping
             Id = from.Id,
             Data = TimeZoneInfo.ConvertTimeFromUtc(from.Data, saoPauloTimeZone),
             Tipo = from.Tipo == TipoMovimentacao.ENTRADA ? "Entrada" : "Saída",
+            PrecoCompra = from.PrecoCompra,
+            PrecoVenda = from.PrecoVenda,
             Quantidade = from.Quantidade,
             Observacao = from.Observacao,
             UsuarioId = from.UsuarioId,

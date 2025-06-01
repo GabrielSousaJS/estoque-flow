@@ -22,6 +22,7 @@ using EstoqueFlow.Application.ViewModel.Fornecedores;
 using EstoqueFlow.Application.ViewModel.Movimentacoes;
 using EstoqueFlow.Application.ViewModel.Produtos;
 using EstoqueFlow.Application.ViewModel.Usuarios;
+using EstoqueFlow.Domain.Entities.Enums;
 using EstoqueFlow.UI.Utilitarios;
 
 namespace EstoqueFlow.UI;
@@ -150,6 +151,8 @@ public partial class FrmPrincipal : Form
         var fornecedores = await _obterTodosFornecedoresUseCase.Executar();
         DgvFornecedores.DataSource = fornecedores;
         LayoutManager.ConfigurarDataGridView(DgvFornecedores);
+
+        TxtTotalFornecedores.Text = DgvFornecedores.Rows.Count.ToString();
     }
 
     private async void CarregarDadosCategoria()
@@ -157,6 +160,8 @@ public partial class FrmPrincipal : Form
         var categorias = await _obterTodosCategoriasUseCase.Executar();
         DgvCategorias.DataSource = categorias;
         LayoutManager.ConfigurarDataGridView(DgvCategorias);
+
+        TxtTotalCategorias.Text = DgvFornecedores.Rows.Count.ToString();
     }
 
     private async void CarregarDadosProduto()
@@ -164,6 +169,9 @@ public partial class FrmPrincipal : Form
         var produtos = await _obterTodosProdutosUseCase.Executar();
         DgvProdutos.DataSource = produtos;
         LayoutManager.ConfigurarDataGridView(DgvProdutos);
+
+        TxtTotalProdutos.Text = DgvProdutos.Rows.Count.ToString();
+        TxtQuantidadeTotalEstoque.Text = produtos.Sum(p => p.Quantidade).ToString();
     }
 
     private async void CarregarDadosMovimentacao()
@@ -171,6 +179,20 @@ public partial class FrmPrincipal : Form
         var movimentacoes = await _obterTodosMovimentacoesUseCase.Executar();
         DgvMovimentacoes.DataSource = movimentacoes;
         LayoutManager.ConfigurarDataGridView(DgvMovimentacoes);
+
+        TxtTotalMovimentacoes.Text = DgvMovimentacoes.Rows.Count.ToString();
+        TxtTotalEntradas.Text = movimentacoes
+            .Where(m => m.Tipo == "Entrada")
+            .Sum(m => m.Quantidade).ToString();
+        TxtTotalSaidas.Text = movimentacoes
+            .Where(m => m.Tipo == "Saída")
+            .Sum(m => m.Quantidade).ToString();
+        TxtValorTotalEntrada.Text = movimentacoes
+            .Where(m => m.Tipo == "Entrada")
+            .Sum(m => m.Quantidade * m.PrecoCompra).ToString();
+        TxtValorTotalSaida.Text = movimentacoes
+            .Where(m => m.Tipo == "Saída")
+            .Sum(m => m.Quantidade * m.PrecoVenda).ToString();
     }
 
     private async void CarregarDadosUsuario()
@@ -178,6 +200,7 @@ public partial class FrmPrincipal : Form
         var usuarios = await _obterTodosUsuariosUseCase.Executar();
         DgvUsuarios.DataSource = usuarios;
         LayoutManager.ConfigurarDataGridView(DgvUsuarios);
+        TxtTotalUsuarios.Text = DgvUsuarios.Rows.Count.ToString();
     }
     #endregion
     #endregion
@@ -494,15 +517,23 @@ public partial class FrmPrincipal : Form
                 return;
             }
 
+            if (precoVenda <= precoCompra)
+            {
+                if (MessageBox.Show("O preço de venda deve ser maior que o preço de compra. \n Deseja continuar mesmo assim?", "Aviso", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning) != DialogResult.Yes)
+                {
+                    return;
+                }
+            }
+
             var request = new ProdutosRequest(
-                nome: TxtNomeProduto.Text,
-                descricao: TxtDescricaoProduto.Text,
-                precoCompra: precoCompra,
-                precoVenda: precoVenda,
-                estoqueMinimo: (int)NudEstoqueMinimo.Value,
-                categoriaId: (int)CbCategoria.SelectedValue,
-                fornecedorId: (int)CbFornecedor.SelectedValue
-            );
+            nome: TxtNomeProduto.Text,
+            descricao: TxtDescricaoProduto.Text,
+            precoCompra: precoCompra,
+            precoVenda: precoVenda,
+            estoqueMinimo: (int)NudEstoqueMinimo.Value,
+            categoriaId: (int)CbCategoria.SelectedValue,
+            fornecedorId: (int)CbFornecedor.SelectedValue
+        );
 
 
             var resposta = await _registrarProdutoUseCase.Executar(request);
@@ -647,7 +678,7 @@ public partial class FrmPrincipal : Form
     #region MOVIMENTAÇÃO
     private async void BtnAdicionarMovimentacao_Click(object sender, EventArgs e)
     {
-        if(DgvProdutos.Rows.Count <= 0)
+        if (DgvProdutos.Rows.Count <= 0)
         {
             MessageBox.Show("Cadastre pelo menos um produto antes de registrar uma movimentação.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return;
@@ -791,4 +822,36 @@ public partial class FrmPrincipal : Form
     }
     #endregion
     #endregion
+
+    #region ATUALIZAR TABELAS DE DADOS
+    private void BtnPesquisarFornecedor_Click(object sender, EventArgs e)
+    {
+        CarregarDadosFornecedor();
+    }
+
+    private void BtnPesquisarCategoria_Click(object sender, EventArgs e)
+    {
+        CarregarDadosCategoria();
+    }
+
+    private void BtnPesquisarProdutos_Click(object sender, EventArgs e)
+    {
+        CarregarDadosProduto();
+    }
+
+    private void BtnPesquisarMovimentacoes_Click(object sender, EventArgs e)
+    {
+        CarregarDadosMovimentacao();
+    }
+
+    private void BtnPesquisarUsuarios_Click(object sender, EventArgs e)
+    {
+        CarregarDadosUsuario();
+    }
+    #endregion
+
+    private void label50_Click(object sender, EventArgs e)
+    {
+
+    }
 }

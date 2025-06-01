@@ -15,17 +15,20 @@ public class RegistrarMovimentacaoUseCase(
     {
         var entidade = request.ToEntidade();
 
-        await AtualizarQuantidadeProduto(entidade);
+        var produto = await produtoRepository.ObterPorId(entidade.ProdutoId) ??
+            throw new Exception("Produto não encontrado.");
+        
+        entidade.PrecoCompra = produto.PrecoCompra;
+        entidade.PrecoVenda = produto.PrecoVenda;
+
+        await AtualizarQuantidadeProduto(entidade, produto);
         var movimentacao = await movimentacaoRepository.Adicionar(entidade);
 
         return movimentacao.ToNovaMovimentacao();
     }
 
-    private async Task AtualizarQuantidadeProduto(Movimentacao movimentacao)
+    private async Task AtualizarQuantidadeProduto(Movimentacao movimentacao, Produto produto)
     {
-        var produto = await produtoRepository.ObterPorId(movimentacao.ProdutoId) ??
-            throw new Exception("Produto não encontrado");
-
         if (movimentacao.Tipo == TipoMovimentacao.ENTRADA)
         {
             produto.Quantidade += movimentacao.Quantidade;

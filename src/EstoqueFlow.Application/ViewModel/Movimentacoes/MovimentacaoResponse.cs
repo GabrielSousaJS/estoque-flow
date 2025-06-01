@@ -11,6 +11,10 @@ public class MovimentacaoResponse
     public DateTime Data { get; set; }
     [DisplayName("Tipo da Movimentação")]
     public string Tipo { get; set; } = string.Empty;
+    [DisplayName("Valor de Compra")]
+    public Decimal PrecoCompra { get; set; }
+    [DisplayName("Valor de Venda")]
+    public Decimal PrecoVenda { get; set; }
     [DisplayName("Quantidade")]
     public int Quantidade { get; set; }
     [DisplayName("Observação")]
