@@ -579,6 +579,7 @@ partial class FrmPrincipal
         TxtValorTotalSaida.Size = new Size(217, 23);
         TxtValorTotalSaida.TabIndex = 15;
         TxtValorTotalSaida.TextAlign = HorizontalAlignment.Right;
+        TxtValorTotalSaida.TextChanged += TxtValorTotalSaida_TextChanged;
         // 
         // label53
         // 
@@ -600,6 +601,7 @@ partial class FrmPrincipal
         TxtValorTotalEntrada.Size = new Size(217, 23);
         TxtValorTotalEntrada.TabIndex = 13;
         TxtValorTotalEntrada.TextAlign = HorizontalAlignment.Right;
+        TxtValorTotalEntrada.TextChanged += TxtValorTotalEntrada_TextChanged;
         // 
         // label52
         // 

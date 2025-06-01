@@ -726,6 +726,16 @@ public partial class FrmPrincipal : Form
             MessageBox.Show(ex.Message, "Erro ao cadastrar movimentação", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
+
+    private void TxtValorTotalEntrada_TextChanged(object sender, EventArgs e)
+    {
+        TxtValorTotalEntrada.FormatarTextBoxNumeroDecimal(sender, e, ref _valorAnterior);
+    }
+
+    private void TxtValorTotalSaida_TextChanged(object sender, EventArgs e)
+    {
+        TxtValorTotalSaida.FormatarTextBoxNumeroDecimal(sender, e, ref _valorAnterior);
+    }
     #endregion
 
     #region USUÁRIO
