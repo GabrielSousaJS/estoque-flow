@@ -29,31 +29,33 @@ Para obter uma cópia local funcionando siga esses passos simples.
 git clone https://github.com/GabrielSousaJS/estoque-flow.git
 ```
 
-2. Verifique as informações de conexão com o banco de dados baseado na opção utilizada.
+2. Verifique as informações de conexão com o banco de dados baseado na opção utilizada
 
 ### PostgreSQL com Docker
 
-* Com o Docker Desktop instalado, basta executar o script abaixo. Ele irá criar um container PostgreSQL que contém a mesma configuração já feita na aplicação;
+* Com o Docker Desktop instalado, basta executar o script abaixo. Ele irá criar um container PostgreSQL que contém a mesma configuração já feita na aplicação
 ```sh
 docker run --name estoque-database -e POSTGRESQL_USERNAME=estoque -e POSTGRESQL_PASSWORD=estoque.123 -e POSTGRESQL_DATABASE=estoque -p 5432:5432 bitnami/postgresql
 ```
-* Realizar a conexão com o banco de dados por meio de um SGBD compatível com PostgreSQL (ex.: DBeaver);
-* Executar o script DDL disponível na pasta **script-db**.
+* Realizar a conexão com o banco de dados por meio de um SGBD compatível com PostgreSQL (ex.: DBeaver)
+* Executar o script DDL disponível na pasta **script-db**
 
 ### PostgreSQL sem Docker
 
-* Estabelecer conexão com o banco de dados;
-* Executar o script disponível na pasta **script-db**;
+* Estabelecer conexão com o banco de dados
+* Executar o script disponível na pasta **script-db**
 * Altere as configurações no arquivo `\src\EstoqueFlow.Infraestructure\DataAccess\DbConnectionFactory.cs`
-* Realize o teste de conexão entre aplicação e banco de dados ao cadastrar um novo usuário.
+* Realize o teste de conexão entre aplicação e banco de dados ao cadastrar um novo usuário
 
 ## Apenas executar
 
-* Instalar todos os arquivos da pasta **dist** e mantê-los na mesma pasta na máquina local.
+* Windows 10+ e possuir o [.NET 8 Desktop Runtime][dot-net-runtime] instalado
+* Instalar todos os arquivos da pasta **dist** e mantê-los na mesma pasta na máquina local
 * Seguir os passos da seção **PosgreSQL com Docker**
 
 <!-- Links -->
 [dot-net-sdk]: https://dotnet.microsoft.com/pt-br/download
+[dot-net-runtime]: https://dotnet.microsoft.com/pt-br/download/dotnet/8.0/runtime
 
 <!-- Badges -->
 [badge-dot-net]: https://img.shields.io/badge/.NET-512BD4?logo=dotnet&logoColor=fff&style=for-the-badge
