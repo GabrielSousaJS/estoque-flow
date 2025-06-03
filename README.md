@@ -33,7 +33,7 @@ git clone https://github.com/GabrielSousaJS/estoque-flow.git
 
 ### PostgreSQL com Docker
 
-* Com o Docker desktop instalado, basta executar o script abaixo. Ele irá criar um container PostgreSQL que contém a mesma configuração já feita na aplicação;
+* Com o Docker Desktop instalado, basta executar o script abaixo. Ele irá criar um container PostgreSQL que contém a mesma configuração já feita na aplicação;
 ```sh
 docker run --name estoque-database -e POSTGRESQL_USERNAME=estoque -e POSTGRESQL_PASSWORD=estoque.123 -e POSTGRESQL_DATABASE=estoque -p 5432:5432 bitnami/postgresql
 ```
@@ -46,6 +46,11 @@ docker run --name estoque-database -e POSTGRESQL_USERNAME=estoque -e POSTGRESQL_
 * Executar o script disponível na pasta **script-db**;
 * Altere as configurações no arquivo `\src\EstoqueFlow.Infraestructure\DataAccess\DbConnectionFactory.cs`
 * Realize o teste de conexão entre aplicação e banco de dados ao cadastrar um novo usuário.
+
+## Apenas executar
+
+* Instalar todos os arquivos da pasta **dist** e mantê-los na mesma pasta na máquina local.
+* Seguir os passos da seção **PosgreSQL com Docker**
 
 <!-- Links -->
 [dot-net-sdk]: https://dotnet.microsoft.com/pt-br/download
