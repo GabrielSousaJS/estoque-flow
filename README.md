@@ -50,12 +50,17 @@ docker run --name estoque-database -e POSTGRESQL_USERNAME=estoque -e POSTGRESQL_
 ## Apenas executar
 
 * Windows 10+ e possuir o [.NET 8 Desktop Runtime][dot-net-runtime] instalado
-* Instalar todos os arquivos da pasta **dist** e mantê-los na mesma pasta na máquina local
+* Instalar a pasta dist.zip do [repositório][estoque-flow] e descompactar, e executar o arquivo **EstoqueFlow.exe**
+* Todos os arquivos da pasta dist devem ser mantidos, caso o arquivo **EstoqueFlow.exe** ou qualquer outro seja movido ao removido, a aplicação não irá funcionar corretamente
 * Seguir os passos da seção **PosgreSQL com Docker**
 
+## Observação
+
+* O .NET para Desktop possui algumas limitações, dentre elas a resolução, para não ocorrer problemas de layout, deve ser utilizado a resolução 1920x1080 e escala 100%
 <!-- Links -->
 [dot-net-sdk]: https://dotnet.microsoft.com/pt-br/download
 [dot-net-runtime]: https://dotnet.microsoft.com/pt-br/download/dotnet/8.0/runtime
+[estoque-flow]: https://github.com/GabrielSousaJS/estoque-flow-apenas-execucao
 
 <!-- Badges -->
 [badge-dot-net]: https://img.shields.io/badge/.NET-512BD4?logo=dotnet&logoColor=fff&style=for-the-badge
