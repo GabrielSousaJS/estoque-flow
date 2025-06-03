@@ -57,6 +57,7 @@ docker run --name estoque-database -e POSTGRESQL_USERNAME=estoque -e POSTGRESQL_
 ## Observação
 
 * O .NET para Desktop possui algumas limitações, dentre elas a resolução, para não ocorrer problemas de layout, deve ser utilizado a resolução 1920x1080 e escala 100%
+* Como a aplicação não será utilizada em ambiente corporativo, a conexão com banco de dados está no projeto, caso contrário, esses dados seriam recebidos como argumentos ao iniciar a aplicação.
 <!-- Links -->
 [dot-net-sdk]: https://dotnet.microsoft.com/pt-br/download
 [dot-net-runtime]: https://dotnet.microsoft.com/pt-br/download/dotnet/thank-you/runtime-desktop-8.0.16-windows-x64-installer?cid=getdotnetcore
